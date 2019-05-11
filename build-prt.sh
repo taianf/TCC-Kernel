@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # where the compiled kernel will be
-mkdir ~/TCC/kernel/prt-kernel
+mkdir ~/TCC-Kernel/prt-kernel
 
 # cloning repos
 git clone --recursive https://gitlab.cs.fau.de/i4/intspect.git
@@ -9,23 +9,25 @@ git clone https://github.com/raspberrypi/linux.git
 git clone https://github.com/raspberrypi/tools.git
 
 export ARCH=arm
-export CROSS_COMPILE=~/TCC/kernel/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
-export INSTALL_MOD_PATH=~/TCC/kernel/prt-kernel
-export INSTALL_DTBS_PATH=~/TCC/kernel/prt-kernel
+export CROSS_COMPILE=~/TCC-Kernel/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
+export INSTALL_MOD_PATH=~/TCC-Kernel/prt-kernel
+export INSTALL_DTBS_PATH=~/TCC-Kernel/prt-kernel
 export KERNEL=kernel7-prt
 
 # Changing branch
-cd ~/TCC/kernel/linux
+cd ~/TCC-Kernel/linux
 git checkout -f rpi-4.14.y-rt
 rm -rf .intsight
 
 # injecting intspect/intsight
-cd ~/TCC/kernel/intspect/intsight
-./inject.sh ~/TCC/kernel/linux/
-sed -i -e 's/default n/default y/' ~/TCC/kernel/linux/arch/arm/intsight/Kconfig
+cd ~/TCC-Kernel/intspect/intsight
+./inject.sh ~/TCC-Kernel/linux/
+sed -i -e 's/(0x60+26)/(5)/' ~/TCC-Kernel/linux/arch/arm/intsight/trigger.c
+sed -i -e 's/(0x60+27)/(6)/' ~/TCC-Kernel/linux/arch/arm/intsight/trigger.c
+sed -i -e 's/default n/default y/' ~/TCC-Kernel/linux/arch/arm/intsight/Kconfig
 
 # build
-cd ~/TCC/kernel/linux
+cd ~/TCC-Kernel/linux
 make bcm2709_defconfig
 # make menuconfig
 # cp ../config-files/.config-prt .config
