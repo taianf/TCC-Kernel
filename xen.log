@@ -1,0 +1,117 @@
+Cloning into 'intspect'...
+Submodule 'intsight' (https://gitlab.cs.fau.de/i4/intsight.git) registered for path 'intsight'
+Cloning into '/home/taian/TCC-Kernel/intspect/intsight'...
+Submodule path 'intsight': checked out 'e70981903617597d2de9d301db35679d6a29e61f'
+Cloning into 'linux'...
+error: RPC failed; curl 56 GnuTLS recv error (-9): A TLS packet with unexpected length was received.
+fatal: The remote end hung up unexpectedly
+fatal: early EOF
+fatal: index-pack failed
+Cloning into 'tools'...
+Checking out files:   4% (890/19059)   Checking out files:   5% (953/19059)   Checking out files:   6% (1144/19059)   Checking out files:   7% (1335/19059)   Checking out files:   8% (1525/19059)   Checking out files:   9% (1716/19059)   Checking out files:  10% (1906/19059)   Checking out files:  10% (2020/19059)   Checking out files:  11% (2097/19059)   Checking out files:  12% (2288/19059)   Checking out files:  13% (2478/19059)   Checking out files:  14% (2669/19059)   Checking out files:  14% (2848/19059)   Checking out files:  15% (2859/19059)   Checking out files:  16% (3050/19059)   Checking out files:  16% (3107/19059)   Checking out files:  17% (3241/19059)   Checking out files:  17% (3307/19059)   Checking out files:  17% (3377/19059)   Checking out files:  18% (3431/19059)   Checking out files:  19% (3622/19059)   Checking out files:  20% (3812/19059)   Checking out files:  21% (4003/19059)   Checking out files:  21% (4081/19059)   Checking out files:  22% (4193/19059)   Checking out files:  23% (4384/19059)   Checking out files:  24% (4575/19059)   Checking out files:  25% (4765/19059)   Checking out files:  26% (4956/19059)   Checking out files:  27% (5146/19059)   Checking out files:  27% (5165/19059)   Checking out files:  28% (5337/19059)   Checking out files:  29% (5528/19059)   Checking out files:  30% (5718/19059)   Checking out files:  30% (5768/19059)   Checking out files:  31% (5909/19059)   Checking out files:  32% (6099/19059)   Checking out files:  33% (6290/19059)   Checking out files:  34% (6481/19059)   Checking out files:  34% (6489/19059)   Checking out files:  35% (6671/19059)   Checking out files:  36% (6862/19059)   Checking out files:  36% (7017/19059)   Checking out files:  37% (7052/19059)   Checking out files:  38% (7243/19059)   Checking out files:  39% (7434/19059)   Checking out files:  40% (7624/19059)   Checking out files:  41% (7815/19059)   Checking out files:  41% (7979/19059)   Checking out files:  42% (8005/19059)   Checking out files:  43% (8196/19059)   Checking out files:  44% (8386/19059)   Checking out files:  45% (8577/19059)   Checking out files:  45% (8737/19059)   Checking out files:  46% (8768/19059)   Checking out files:  47% (8958/19059)   Checking out files:  47% (9021/19059)   Checking out files:  48% (9149/19059)   Checking out files:  49% (9339/19059)   Checking out files:  50% (9530/19059)   Checking out files:  50% (9605/19059)   Checking out files:  51% (9721/19059)   Checking out files:  52% (9911/19059)   Checking out files:  53% (10102/19059)   Checking out files:  53% (10251/19059)   Checking out files:  54% (10292/19059)   Checking out files:  55% (10483/19059)   Checking out files:  55% (10671/19059)   Checking out files:  56% (10674/19059)   Checking out files:  56% (10686/19059)   Checking out files:  56% (10690/19059)   Checking out files:  56% (10710/19059)   Checking out files:  56% (10848/19059)   Checking out files:  56% (10849/19059)   Checking out files:  56% (10852/19059)   Checking out files:  56% (10861/19059)   Checking out files:  57% (10864/19059)   Checking out files:  57% (10872/19059)   Checking out files:  57% (10880/19059)   Checking out files:  57% (10888/19059)   Checking out files:  58% (11055/19059)   Checking out files:  59% (11245/19059)   Checking out files:  60% (11436/19059)   Checking out files:  60% (11484/19059)   Checking out files:  61% (11626/19059)   Checking out files:  62% (11817/19059)   Checking out files:  62% (12001/19059)   Checking out files:  63% (12008/19059)   Checking out files:  64% (12198/19059)   Checking out files:  65% (12389/19059)   Checking out files:  65% (12492/19059)   Checking out files:  66% (12579/19059)   Checking out files:  66% (12739/19059)   Checking out files:  67% (12770/19059)   Checking out files:  68% (12961/19059)   Checking out files:  69% (13151/19059)   Checking out files:  69% (13325/19059)   Checking out files:  70% (13342/19059)   Checking out files:  71% (13532/19059)   Checking out files:  72% (13723/19059)   Checking out files:  73% (13914/19059)   Checking out files:  73% (14034/19059)   Checking out files:  74% (14104/19059)   Checking out files:  75% (14295/19059)   Checking out files:  76% (14485/19059)   Checking out files:  76% (14619/19059)   Checking out files:  77% (14676/19059)   Checking out files:  78% (14867/19059)   Checking out files:  79% (15057/19059)   Checking out files:  80% (15248/19059)   Checking out files:  80% (15302/19059)   Checking out files:  81% (15438/19059)   Checking out files:  82% (15629/19059)   Checking out files:  83% (15819/19059)   Checking out files:  84% (16010/19059)   Checking out files:  84% (16185/19059)   Checking out files:  85% (16201/19059)   Checking out files:  86% (16391/19059)   Checking out files:  87% (16582/19059)   Checking out files:  87% (16630/19059)   Checking out files:  88% (16772/19059)   Checking out files:  89% (16963/19059)   Checking out files:  89% (17033/19059)   Checking out files:  90% (17154/19059)   Checking out files:  90% (17273/19059)   Checking out files:  90% (17282/19059)   Checking out files:  90% (17292/19059)   Checking out files:  91% (17344/19059)   Checking out files:  92% (17535/19059)   Checking out files:  93% (17725/19059)   Checking out files:  94% (17916/19059)   Checking out files:  95% (18107/19059)   Checking out files:  95% (18156/19059)   Checking out files:  96% (18297/19059)   Checking out files:  97% (18488/19059)   Checking out files:  98% (18678/19059)   Checking out files:  99% (18869/19059)   Checking out files:  99% (19029/19059)   Checking out files: 100% (19059/19059)   Checking out files: 100% (19059/19059), done.
+Will not apply HSTS. The HSTS database must be a regular and non-world-writable file.
+ERROR: could not open HSTS store at '/home/taian/.wget-hsts'. HSTS will be disabled.
+--2019-05-15 03:24:23--  https://raw.githubusercontent.com/thanhtam-h/rpi23-4.9.80-xeno3/master/scripts/ipipe-core-4.9.51-arm-4-for-4.9.80.patch
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.92.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.92.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 716745 (700K) [text/plain]
+Saving to: ‘ipipe-core-4.9.51-arm-4-for-4.9.80.patch’
+
+     0K .......... .......... .......... .......... ..........  7%  484K 1s
+    50K .......... .......... .......... .......... .......... 14%  969K 1s
+   100K .......... .......... .......... .......... .......... 21% 46.1M 1s
+   150K .......... .......... .......... .......... .......... 28%  989K 1s
+   200K .......... .......... .......... .......... .......... 35% 31.1M 0s
+   250K .......... .......... .......... .......... .......... 42% 53.4M 0s
+   300K .......... .......... .......... .......... .......... 50% 54.7M 0s
+   350K .......... .......... .......... .......... .......... 57% 33.7M 0s
+   400K .......... .......... .......... .......... .......... 64% 1.01M 0s
+   450K .......... .......... .......... .......... .......... 71% 56.0M 0s
+   500K .......... .......... .......... .......... .......... 78% 19.4M 0s
+   550K .......... .......... .......... .......... .......... 85% 10.5M 0s
+   600K .......... .......... .......... .......... .......... 92% 51.6M 0s
+   650K .......... .......... .......... .......... ......... 100% 1.14M=0.3s
+
+2019-05-15 03:24:24 (2.20 MB/s) - ‘ipipe-core-4.9.51-arm-4-for-4.9.80.patch’ saved [716745/716745]
+
+Will not apply HSTS. The HSTS database must be a regular and non-world-writable file.
+ERROR: could not open HSTS store at '/home/taian/.wget-hsts'. HSTS will be disabled.
+--2019-05-15 03:24:24--  https://xenomai.org/downloads/xenomai/stable/xenomai-3.0.7.tar.bz2
+Resolving xenomai.org (xenomai.org)... 62.210.215.82
+Connecting to xenomai.org (xenomai.org)|62.210.215.82|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2311533 (2.2M) [application/x-bzip2]
+Saving to: ‘xenomai-3.0.7.tar.bz2’
+
+     0K .......... .......... .......... .......... ..........  2%  116K 19s
+    50K .......... .......... .......... .......... ..........  4%  232K 14s
+   100K .......... .......... .......... .......... ..........  6% 30.0M 9s
+   150K .......... .......... .......... .......... ..........  8% 49.8M 7s
+   200K .......... .......... .......... .......... .......... 11%  233K 7s
+   250K .......... .......... .......... .......... .......... 13%  231K 7s
+   300K .......... .......... .......... .......... .......... 15% 47.7M 6s
+   350K .......... .......... .......... .......... .......... 17% 38.5M 5s
+   400K .......... .......... .......... .......... .......... 19% 45.8M 4s
+   450K .......... .......... .......... .......... .......... 22% 52.9M 4s
+   500K .......... .......... .......... .......... .......... 24%  237K 4s
+   550K .......... .......... .......... .......... .......... 26% 40.9M 4s
+   600K .......... .......... .......... .......... .......... 28% 35.9M 3s
+   650K .......... .......... .......... .......... .......... 31% 33.0M 3s
+   700K .......... .......... .......... .......... .......... 33%  116K 3s
+   750K .......... .......... .......... .......... .......... 35% 36.7M 3s
+   800K .......... .......... .......... .......... .......... 37% 29.9M 3s
+   850K .......... .......... .......... .......... .......... 39% 54.0M 3s
+   900K .......... .......... .......... .......... .......... 42% 46.8M 2s
+   950K .......... .......... .......... .......... .......... 44%  237K 2s
+  1000K .......... .......... .......... .......... .......... 46% 36.9M 2s
+  1050K .......... .......... .......... .......... .......... 48% 49.4M 2s
+  1100K .......... .......... .......... .......... .......... 50%  230K 2s
+  1150K .......... .......... .......... .......... .......... 53% 60.1M 2s
+  1200K .......... .......... .......... .......... .......... 55% 48.5M 2s
+  1250K .......... .......... .......... .......... .......... 57%  238K 2s
+  1300K .......... .......... .......... .......... .......... 59% 18.3M 2s
+  1350K .......... .......... .......... .......... .......... 62%  235K 2s
+  1400K .......... .......... .......... .......... .......... 64% 15.7M 1s
+  1450K .......... .......... .......... .......... .......... 66%  238K 1s
+  1500K .......... .......... .......... .......... .......... 68% 10.7M 1s
+  1550K .......... .......... .......... .......... .......... 70% 38.1M 1s
+  1600K .......... .......... .......... .......... .......... 73%  234K 1s
+  1650K .......... .......... .......... .......... .......... 75% 31.7M 1s
+  1700K .......... .......... .......... .......... .......... 77%  237K 1s
+  1750K .......... .......... .......... .......... .......... 79% 12.6M 1s
+  1800K .......... .......... .......... .......... .......... 81%  239K 1s
+  1850K .......... .......... .......... .......... .......... 84% 11.2M 1s
+  1900K .......... .......... .......... .......... .......... 86% 14.1M 1s
+  1950K .......... .......... .......... .......... .......... 88%  238K 0s
+  2000K .......... .......... .......... .......... .......... 90% 16.1M 0s
+  2050K .......... .......... .......... .......... .......... 93%  117K 0s
+  2100K .......... .......... .......... .......... .......... 95% 50.2M 0s
+  2150K .......... .......... .......... .......... .......... 97% 56.3M 0s
+  2200K .......... .......... .......... .......... .......... 99% 9.69M 0s
+  2250K .......                                               100% 23.0M=4.1s
+
+2019-05-15 03:24:30 (550 KB/s) - ‘xenomai-3.0.7.tar.bz2’ saved [2311533/2311533]
+
+./build-xen.sh: line 24: cd: /home/taian/TCC-Kernel/linux: No such file or directory
+error: pathspec 'rpi-4.9.y' did not match any file(s) known to git.
+xenomai-3.0.7/scripts/prepare-kernel.sh: line 230: cd: linux/: No such file or directory
+Usage: ./inject.sh [LinuxFolder]
+sed: can't read /home/taian/TCC-Kernel/linux/arch/arm/intsight/trigger.c: No such file or directory
+sed: can't read /home/taian/TCC-Kernel/linux/arch/arm/intsight/trigger.c: No such file or directory
+sed: can't read /home/taian/TCC-Kernel/linux/arch/arm/intsight/Kconfig: No such file or directory
+./build-xen.sh: line 40: cd: /home/taian/TCC-Kernel/linux: No such file or directory
+make[1]: Entering directory '/home/taian/TCC-Kernel/intspect/intsight'
+make[1]: *** No rule to make target 'bcm2709_defconfig'.  Stop.
+make[1]: Leaving directory '/home/taian/TCC-Kernel/intspect/intsight'
+cp: cannot stat '../config-files/.config-xen': No such file or directory
+make[1]: Entering directory '/home/taian/TCC-Kernel/intspect/intsight'
+make[1]: *** No rule to make target 'zImage'.  Stop.
+make[1]: Leaving directory '/home/taian/TCC-Kernel/intspect/intsight'
+make[1]: Entering directory '/home/taian/TCC-Kernel/intspect/intsight'
+make[1]: *** No rule to make target 'modules_install'.  Stop.
+make[1]: Leaving directory '/home/taian/TCC-Kernel/intspect/intsight'
+make[1]: Entering directory '/home/taian/TCC-Kernel/intspect/intsight'
+make[1]: *** No rule to make target 'dtbs_install'.  Stop.
+make[1]: Leaving directory '/home/taian/TCC-Kernel/intspect/intsight'
+./build-xen.sh: line 48: ./scripts/mkknlimg: No such file or directory

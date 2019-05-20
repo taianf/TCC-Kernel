@@ -40,7 +40,7 @@ sed -i -e 's/default n/default y/' ~/TCC-Kernel/linux/arch/arm/intsight/Kconfig
 cd ~/TCC-Kernel/linux
 make bcm2709_defconfig
 # make menuconfig
-# cp ../config-files/.config-xen .config
+cp ../config-files/.config-xen .config
 make -j$(nproc) zImage modules dtbs
 make -j$(nproc) modules_install 
 make -j$(nproc) dtbs_install

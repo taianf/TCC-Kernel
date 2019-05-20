@@ -22,15 +22,15 @@ rm -rf .intsight
 # injecting intspect/intsight
 cd ~/TCC-Kernel/intspect/intsight
 ./inject.sh ~/TCC-Kernel/linux/
-sed -i -e 's/(0x60+26)/(5)/' ~/TCC-Kernel/linux/arch/arm/intsight/trigger.c
-sed -i -e 's/(0x60+27)/(6)/' ~/TCC-Kernel/linux/arch/arm/intsight/trigger.c
+sed -i -e 's/(0x60+26)/(23)/' ~/TCC-Kernel/linux/arch/arm/intsight/trigger.c
+sed -i -e 's/(0x60+27)/(24)/' ~/TCC-Kernel/linux/arch/arm/intsight/trigger.c
 sed -i -e 's/default n/default y/' ~/TCC-Kernel/linux/arch/arm/intsight/Kconfig
 
 # build
 cd ~/TCC-Kernel/linux
 make bcm2709_defconfig
 # make menuconfig
-# cp ../config-files/.config-prt .config
+cp ../config-files/.config-prt .config
 make -j$(nproc) zImage modules dtbs
 make -j$(nproc) modules_install 
 make -j$(nproc) dtbs_install
