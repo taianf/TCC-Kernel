@@ -4,7 +4,6 @@
 mkdir ~/TCC-Kernel/xen-kernel
 
 # cloning repos
-git clone --recursive https://gitlab.cs.fau.de/i4/intspect.git
 git clone https://github.com/raspberrypi/linux.git
 git clone https://github.com/raspberrypi/tools.git
 
@@ -32,9 +31,6 @@ xenomai-3.0.7/scripts/prepare-kernel.sh --linux=linux/ --arch=arm --ipipe=ipipe-
 # injecting intspect/intsight
 cd ~/TCC-Kernel/intspect/intsight
 ./inject.sh ~/TCC-Kernel/linux/
-sed -i -e 's/(0x60+26)/(5)/' ~/TCC-Kernel/linux/arch/arm/intsight/trigger.c
-sed -i -e 's/(0x60+27)/(6)/' ~/TCC-Kernel/linux/arch/arm/intsight/trigger.c
-sed -i -e 's/default n/default y/' ~/TCC-Kernel/linux/arch/arm/intsight/Kconfig
 
 # build
 cd ~/TCC-Kernel/linux
