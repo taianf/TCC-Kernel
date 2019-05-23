@@ -7,25 +7,26 @@ mkdir xen-kernel
 git clone https://github.com/raspberrypi/linux.git -b rpi-4.9.y
 
 export ARCH=arm
-export CROSS_COMPILE=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
-export INSTALL_MOD_PATH=./xen-kernel
-export INSTALL_DTBS_PATH=./xen-kernel
+export CROSS_COMPILE=../../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
+export INSTALL_MOD_PATH=../xen-kernel
+export INSTALL_DTBS_PATH=../xen-kernel
 export KERNEL=kernel7-xen
 
 # Getting Xenomai files
 wget -O ipipe-core-4.9.51-arm-4-for-4.9.80.patch https://raw.githubusercontent.com/thanhtam-h/rpi23-4.9.80-xeno3/master/scripts/ipipe-core-4.9.51-arm-4-for-4.9.80.patch
 wget -O xenomai-3.0.7.tar.bz2 https://xenomai.org/downloads/xenomai/stable/xenomai-3.0.7.tar.bz2
 tar xjf xenomai-3.0.7.tar.bz2
-sed -i -e 's/ln -sf/cp/' ~/TCC-Kernel/xenomai-3.0.7/scripts/prepare-kernel.sh
+sed -i -e 's/ln -sf/cp/' ./xenomai-3.0.7/scripts/prepare-kernel.sh
 
 # Patching with Xenomai
 xenomai-3.0.7/scripts/prepare-kernel.sh --linux=linux/ --arch=arm --ipipe=ipipe-core-4.9.51-arm-4-for-4.9.80.patch --verbose
 
 # injecting intspect/intsight
-../intspect/intsight/inject.sh linux/
+cd ../intspect/intsight
+./inject.sh ../../xen/linux/
 
 # build
-cd linux
+cd ../../xen/linux/
 # make bcm2709_defconfig
 # make menuconfig
 cp ../.config-xen .config

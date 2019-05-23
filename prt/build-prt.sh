@@ -7,16 +7,17 @@ mkdir prt-kernel
 git clone https://github.com/raspberrypi/linux.git -b rpi-4.14.y-rt
 
 export ARCH=arm
-export CROSS_COMPILE../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
-export INSTALL_MOD_PATH=./prt-kernel
-export INSTALL_DTBS_PATH=./prt-kernel
+export CROSS_COMPILE=../../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
+export INSTALL_MOD_PATH=../prt-kernel
+export INSTALL_DTBS_PATH=../prt-kernel
 export KERNEL=kernel7-prt
 
 # injecting intspect/intsight
-../intspect/intsight/inject.sh linux/
+cd ../intspect/intsight
+./inject.sh ../../prt/linux/
 
 # build
-cd linux
+cd ../../prt/linux/
 # make bcm2709_defconfig
 # make menuconfig
 cp ../.config-prt .config
