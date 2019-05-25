@@ -18,13 +18,13 @@ cd ../intspect/intsight
 
 # build
 cd ../../rpi/linux/
-# make bcm2709_defconfig
+make bcm2709_defconfig
 # make menuconfig
 cp ../.config-rpi .config
-# make -j$(nproc) zImage modules dtbs
-# make -j$(nproc) modules_install 
-# make -j$(nproc) dtbs_install
-# mkdir $INSTALL_MOD_PATH/boot
-# ./scripts/mkknlimg ./arch/arm/boot/zImage $INSTALL_MOD_PATH/boot/$KERNEL.img
-# cd $INSTALL_MOD_PATH
-# tar czf ../rpi-kernel.tgz *
+make -j$(nproc) zImage modules dtbs
+make -j$(nproc) modules_install 
+make -j$(nproc) dtbs_install
+mkdir $INSTALL_MOD_PATH/boot
+./scripts/mkknlimg ./arch/arm/boot/zImage $INSTALL_MOD_PATH/boot/$KERNEL.img
+cd $INSTALL_MOD_PATH
+tar czf ../rpi-kernel.tgz *

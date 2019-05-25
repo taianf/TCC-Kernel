@@ -1,2 +1,12 @@
 .vscode
 *.log
+*xenomai*
+intspect
+prt/linux
+prt/prt-kernel
+rpi/linux
+rpi/rpi-kernel
+tools
+xen/ipipe*
+xen/linux
+xen/xen-kernel

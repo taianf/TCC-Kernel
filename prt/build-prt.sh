@@ -18,7 +18,7 @@ cd ../intspect/intsight
 
 # build
 cd ../../prt/linux/
-# make bcm2709_defconfig
+make bcm2709_defconfig
 # make menuconfig
 cp ../.config-prt .config
 make -j$(nproc) zImage modules dtbs
