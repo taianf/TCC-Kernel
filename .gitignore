@@ -1,5 +1,4 @@
 .vscode
-*.log
 *xenomai*
 intspect
 prt/linux
