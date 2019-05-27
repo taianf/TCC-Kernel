@@ -5,14 +5,13 @@ set -u
 
 INTSIGHT="/sys/kernel/debug/intsight"
 
-if [ $# -ne 2 -o ! -f "$2" ]
+if [ $# -ne 1  ]
 then
-	echo "Usage: $0 [results] [config]" >&2
+	echo "Usage: $0 [results]" >&2
     exit 1
 fi
 
 results="$1"
-config="$2"
 
 cd "${INTSIGHT}"
 if [ $(ls | wc -l) == "1" ]; then
@@ -20,18 +19,12 @@ if [ $(ls | wc -l) == "1" ]; then
 fi
 
 # Communicate the benchmark config to intsight.
-IFS="="
-while read -r file value
-do
-    if [ -f "${file}" ]
-    then
-        echo "${value}" > "${file}"
-        echo "${file}=${value}"
-    else
-        echo "Error: ${file} (value ${value}) does not exist." >&2
-        exit 1
-    fi
-done < "${config}"
+echo softirq > bottom_handler
+echo 50 > checkpoint_capacity
+echo 20 > delay_ms
+echo usleep_range > delay_type
+echo 100 > progress_interval
+echo 1000 > reps
 
 mkdir -p "${results}"
 mkdir -p "${results}/proc"
