@@ -56,3 +56,5 @@ cp -vrf . $HERE/results-work/intsight
 # Gather general system information.
 cp -vf /proc/version $HERE/results-work/proc/version
 cp -vf /proc/config.gz $HERE/results-work/proc/config.gz
+
+reboot
