@@ -26,7 +26,7 @@ echo 10000 > progress_interval
 echo 50000 > reps
 
 # mkdir -p "results"
-mkdir -p $HERE/results/proc
+mkdir -p $HERE/results-work/proc
 
 echo > prepare_trigger
 
@@ -35,24 +35,24 @@ echo > prepare_trigger
 set +e
 
 # Gather system information before the benchmark.
-cp -vf /proc/schedstat $HERE/results/proc/schedstat.before
-cp -vf /proc/softirqs $HERE/results/proc/softirqs.before
-cp -vf /proc/stat $HERE/results/proc/stat.before
-cp -vf /proc/interrupts $HERE/results/proc/interrupts.before
+cp -vf /proc/schedstat $HERE/results-work/proc/schedstat.before
+cp -vf /proc/softirqs $HERE/results-work/proc/softirqs.before
+cp -vf /proc/stat $HERE/results-work/proc/stat.before
+cp -vf /proc/interrupts $HERE/results-work/proc/interrupts.before
 
 # Execute the benchmark
 echo > do_trigger
 
 # Gather system information after the benchmark.
-cp -vf /proc/interrupts $HERE/results/proc/interrupts.after
-cp -vf /proc/stat $HERE/results/proc/stat.after
-cp -vf /proc/softirqs $HERE/results/proc/softirqs.after
-cp -vf /proc/schedstat $HERE/results/proc/schedstat.after
+cp -vf /proc/interrupts $HERE/results-work/proc/interrupts.after
+cp -vf /proc/stat $HERE/results-work/proc/stat.after
+cp -vf /proc/softirqs $HERE/results-work/proc/softirqs.after
+cp -vf /proc/schedstat $HERE/results-work/proc/schedstat.after
 
 # Save the benchmark results.
 echo > postprocess_trigger
-cp -vrf . $HERE/results/intsight
+cp -vrf . $HERE/results-work/intsight
 
 # Gather general system information.
-cp -vf /proc/version $HERE/results/proc/version
-cp -vf /proc/config.gz $HERE/results/proc/config.gz
+cp -vf /proc/version $HERE/results-work/proc/version
+cp -vf /proc/config.gz $HERE/results-work/proc/config.gz
