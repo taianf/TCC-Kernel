@@ -9,5 +9,5 @@ prt: prepare
 xen: prepare
 	cd xen && ./build-xen.sh > ../xen.log 2>&1
 clean:
-	rm -rf prt/linux prt/prt-kernel rpi/linux rpi/rpi-kernel xen/linux xen/xen-kernel xen/xenomai* xen/ipipe*
+	rm -rf prt/linux prt/prt-kernel rpi/linux rpi/rpi-kernel xen/linux xen/xen-kernel xen/xenomai* xen/ipipe* intspect/ tools/
 all: rpi prt xen
