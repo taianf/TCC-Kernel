@@ -28,8 +28,8 @@ for result in results:
     if ("irq" in result.keys()) & ("softirq" in result.keys()):
         if (result["irq"] != "0") & (result["softirq"] != "0"):
             response_times.append(int(result["softirq"]) - int(result["irq"]))
-            print("line: " + str(len(response_times)) + " irq: " + result["irq"] + " softirq: " + result[
-                "softirq"] + " total time: " + str(response_times[-1]))
+            # print("line: " + str(len(response_times)) + " irq: " + result["irq"] + " softirq: " + result[
+            #     "softirq"] + " total time: " + str(response_times[-1]))
 
 print("lines: " + str(len(response_times)))
 if len(response_times) != 0:

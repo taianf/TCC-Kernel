@@ -29,9 +29,9 @@ for result in results:
     if ("checkpoint_1" in result.keys()) & ("checkpoint_2" in result.keys()):
         if (result["checkpoint_1"] != "0") & (result["checkpoint_2"] != "0"):
             response_times.append(int(result["checkpoint_2"]) - int(result["checkpoint_1"]))
-            print("line: " + str(len(response_times)) + " checkpoint_1: " + result["checkpoint_1"] + " checkpoint_2: " +
-                  result[
-                      "checkpoint_2"] + " total time: " + str(response_times[-1]))
+            # print("line: " + str(len(response_times)) + " checkpoint_1: " + result["checkpoint_1"] + " checkpoint_2: " +
+            #       result[
+            #           "checkpoint_2"] + " total time: " + str(response_times[-1]))
 
 print("lines: " + str(len(response_times)))
 if len(response_times) != 0:
