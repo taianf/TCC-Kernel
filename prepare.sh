@@ -1,5 +1,7 @@
 #!/bin/bash
 
+chmod +x `find . -name "*.sh"`
+
 # cloning repos
 git clone https://github.com/raspberrypi/tools.git
 git clone --recursive https://gitlab.cs.fau.de/i4/intspect.git
