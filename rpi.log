@@ -17,10 +17,80 @@ scripts/kconfig/conf  --silentoldconfig Kconfig
   CHK     include/generated/asm-offsets.h
   CALL    scripts/checksyscalls.sh
   CHK     include/generated/compile.h
+  CC      arch/arm/kernel/irq.o
+  CC      arch/arm/kernel/process.o
+  CC      arch/arm/intsight/trigger.o
+  CC      arch/arm/intsight/measure.o
+arch/arm/intsight/trigger.c: In function ‘intsight_do_trigger’:
+arch/arm/intsight/trigger.c:218:17: warning: unused variable ‘delay_ns’ [-Wunused-variable]
+  const uint64_t delay_ns = delay_ms*1000*1000;
+                 ^
+  CC      kernel/softirq.o
+kernel/softirq.c: In function ‘tasklet_hi_action’:
+kernel/softirq.c:533:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  struct tasklet_struct *list;
+  ^
+  AR      arch/arm/intsight/intsight.o
+  AR      arch/arm/intsight/built-in.o
+  CC      block/blk-softirq.o
+  AR      arch/arm/kernel/built-in.o
+block/blk-softirq.c: In function ‘blk_done_softirq’:
+block/blk-softirq.c:27:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  struct list_head *cpu_list, local_list;
+  ^
+  CC      kernel/workqueue.o
+kernel/workqueue.c: In function ‘__queue_work’:
+kernel/workqueue.c:1409:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+   struct worker *worker;
+   ^
+  AR      block/built-in.o
+  CC      drivers/char/random.o
+  CC      net/core/dev.o
+  CC      kernel/irq/handle.o
+kernel/irq/handle.c: In function ‘handle_bad_irq’:
+kernel/irq/handle.c:33:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  unsigned int irq = irq_desc_get_irq(desc);
+  ^
+  CC      kernel/rcu/tree.o
+  CC      kernel/sched/core.o
+kernel/rcu/tree.c: In function ‘rcu_process_callbacks’:
+kernel/rcu/tree.c:2942:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  struct rcu_state *rsp;
+  ^
+net/core/dev.c: In function ‘net_tx_action’:
+net/core/dev.c:4124:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  struct softnet_data *sd = this_cpu_ptr(&softnet_data);
+  ^
+net/core/dev.c: In function ‘net_rx_action’:
+net/core/dev.c:5643:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  struct softnet_data *sd = this_cpu_ptr(&softnet_data);
+  ^
+  AR      kernel/irq/built-in.o
+  CC      kernel/time/timer.o
+kernel/time/timer.c: In function ‘run_timer_softirq’:
+kernel/time/timer.c:1647:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  struct timer_base *base = this_cpu_ptr(&timer_bases[BASE_STD]);
+  ^
+  AR      drivers/char/built-in.o
+  AR      kernel/rcu/built-in.o
+  AR      kernel/time/built-in.o
+  CC      kernel/sched/fair.o
+kernel/sched/fair.c: In function ‘update_curr’:
+kernel/sched/fair.c:855:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+   struct task_struct *curtask = task_of(curr);
+   ^
+kernel/sched/fair.c: In function ‘run_rebalance_domains’:
+kernel/sched/fair.c:9016:2: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+  struct rq *this_rq = this_rq();
+  ^
+  AR      net/core/built-in.o
+  CC      kernel/sched/idle.o
+  AR      kernel/sched/built-in.o
   GZIP    kernel/config_data.gz
+  AR      kernel/built-in.o
   CHK     kernel/config_data.h
-  UPD     kernel/config_data.h
-  CC [M]  kernel/configs.o
+  AR      net/built-in.o
+  AR      drivers/built-in.o
   GEN     .version
   CHK     include/generated/compile.h
   UPD     include/generated/compile.h
@@ -43,8 +113,6 @@ scripts/kconfig/conf  --silentoldconfig Kconfig
   OBJCOPY arch/arm/boot/zImage
   Kernel: arch/arm/boot/zImage is ready
   MODPOST 1522 modules
-  CC      kernel/configs.mod.o
-  LD [M]  kernel/configs.ko
 make[1]: Leaving directory '/home/taian/TCC-Kernel/rpi/linux'
 make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL arch/arm/crypto/aes-arm-bs.ko
@@ -74,18 +142,18 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL crypto/cts.ko
   INSTALL crypto/deflate.ko
   INSTALL crypto/drbg.ko
-  INSTALL crypto/ecdh_generic.ko
   INSTALL crypto/ecb.ko
+  INSTALL crypto/ecdh_generic.ko
   INSTALL crypto/echainiv.ko
-  INSTALL crypto/gcm.ko
   INSTALL crypto/gf128mul.ko
+  INSTALL crypto/gcm.ko
   INSTALL crypto/ghash-generic.ko
   INSTALL crypto/hmac.ko
   INSTALL crypto/jitterentropy_rng.ko
   INSTALL crypto/lz4.ko
   INSTALL crypto/lzo.ko
-  INSTALL crypto/md5.ko
   INSTALL crypto/md4.ko
+  INSTALL crypto/md5.ko
   INSTALL crypto/michael_mic.ko
   INSTALL crypto/seqiv.ko
   INSTALL crypto/sha1_generic.ko
@@ -93,8 +161,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL crypto/sha512_generic.ko
   INSTALL crypto/tgr192.ko
   INSTALL crypto/wp512.ko
-  INSTALL crypto/xcbc.ko
   INSTALL crypto/xor.ko
+  INSTALL crypto/xcbc.ko
   INSTALL crypto/xts.ko
   INSTALL drivers/auxdisplay/charlcd.ko
   INSTALL drivers/auxdisplay/hd44780.ko
@@ -102,15 +170,15 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/block/aoe/aoe.ko
   INSTALL drivers/block/cryptoloop.ko
   INSTALL drivers/block/drbd/drbd.ko
+  INSTALL drivers/block/pktcdvd.ko
   INSTALL drivers/block/nbd.ko
   INSTALL drivers/block/zram/zram.ko
-  INSTALL drivers/block/pktcdvd.ko
   INSTALL drivers/bluetooth/ath3k.ko
   INSTALL drivers/bluetooth/bcm203x.ko
   INSTALL drivers/bluetooth/bfusb.ko
   INSTALL drivers/bluetooth/bpa10x.ko
-  INSTALL drivers/bluetooth/btbcm.ko
   INSTALL drivers/bluetooth/btintel.ko
+  INSTALL drivers/bluetooth/btbcm.ko
   INSTALL drivers/bluetooth/btmrvl.ko
   INSTALL drivers/bluetooth/btmrvl_sdio.ko
   INSTALL drivers/bluetooth/btrtl.ko
@@ -129,17 +197,17 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/connector/cn.ko
   INSTALL drivers/dax/dax.ko
   INSTALL drivers/extcon/extcon-arizona.ko
-  INSTALL drivers/gpio/gpio-arizona.ko
   INSTALL drivers/extcon/extcon-core.ko
+  INSTALL drivers/gpio/gpio-arizona.ko
   INSTALL drivers/gpio/gpio-mockup.ko
   INSTALL drivers/gpio/gpio-pcf857x.ko
   INSTALL drivers/gpu/drm/drm.ko
   INSTALL drivers/gpu/drm/drm_kms_helper.ko
   INSTALL drivers/gpu/drm/panel/panel-raspberrypi-touchscreen.ko
-  INSTALL drivers/gpu/drm/panel/panel-simple.ko
   INSTALL drivers/gpu/drm/tinydrm/core/tinydrm.ko
-  INSTALL drivers/gpu/drm/tinydrm/mi0283qt.ko
+  INSTALL drivers/gpu/drm/panel/panel-simple.ko
   INSTALL drivers/gpu/drm/tinydrm/mipi-dbi.ko
+  INSTALL drivers/gpu/drm/tinydrm/mi0283qt.ko
   INSTALL drivers/gpu/drm/tinydrm/repaper.ko
   INSTALL drivers/gpu/drm/udl/udl.ko
   INSTALL drivers/gpu/drm/vc4/vc4.ko
@@ -152,8 +220,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/hid/hid-bigbenff.ko
   INSTALL drivers/hid/hid-cherry.ko
   INSTALL drivers/hid/hid-chicony.ko
-  INSTALL drivers/hid/hid-cypress.ko
   INSTALL drivers/hid/hid-dr.ko
+  INSTALL drivers/hid/hid-cypress.ko
   INSTALL drivers/hid/hid-elecom.ko
   INSTALL drivers/hid/hid-elo.ko
   INSTALL drivers/hid/hid-emsff.ko
@@ -175,13 +243,13 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/hid/hid-magicmouse.ko
   INSTALL drivers/hid/hid-microsoft.ko
   INSTALL drivers/hid/hid-monterey.ko
-  INSTALL drivers/hid/hid-multitouch.ko
   INSTALL drivers/hid/hid-ntrig.ko
+  INSTALL drivers/hid/hid-multitouch.ko
   INSTALL drivers/hid/hid-ortek.ko
   INSTALL drivers/hid/hid-petalynx.ko
   INSTALL drivers/hid/hid-picolcd.ko
-  INSTALL drivers/hid/hid-pl.ko
   INSTALL drivers/hid/hid-roccat-arvo.ko
+  INSTALL drivers/hid/hid-pl.ko
   INSTALL drivers/hid/hid-roccat-common.ko
   INSTALL drivers/hid/hid-roccat-isku.ko
   INSTALL drivers/hid/hid-roccat-kone.ko
@@ -205,25 +273,25 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/hid/hid-waltop.ko
   INSTALL drivers/hid/hid-wiimote.ko
   INSTALL drivers/hid/hid-xinmo.ko
-  INSTALL drivers/hid/hid-zpff.ko
   INSTALL drivers/hid/hid-zydacron.ko
   INSTALL drivers/hid/uhid.ko
+  INSTALL drivers/hid/hid-zpff.ko
   INSTALL drivers/hid/wacom.ko
   INSTALL drivers/hwmon/ads1015.ko
   INSTALL drivers/hwmon/ds1621.ko
   INSTALL drivers/hwmon/gpio-fan.ko
   INSTALL drivers/hwmon/hwmon.ko
   INSTALL drivers/hwmon/ina2xx.ko
-  INSTALL drivers/hwmon/lm75.ko
-  INSTALL drivers/hwmon/jc42.ko
   INSTALL drivers/hwmon/rpi-poe-fan.ko
+  INSTALL drivers/hwmon/jc42.ko
+  INSTALL drivers/hwmon/lm75.ko
   INSTALL drivers/hwmon/sht21.ko
   INSTALL drivers/hwmon/sht3x.ko
   INSTALL drivers/hwmon/shtc1.ko
   INSTALL drivers/hwmon/tmp102.ko
   INSTALL drivers/i2c/algos/i2c-algo-bit.ko
-  INSTALL drivers/i2c/busses/i2c-bcm2708.ko
   INSTALL drivers/i2c/busses/i2c-bcm2835.ko
+  INSTALL drivers/i2c/busses/i2c-bcm2708.ko
   INSTALL drivers/i2c/busses/i2c-gpio.ko
   INSTALL drivers/i2c/busses/i2c-robotfuzz-osif.ko
   INSTALL drivers/i2c/busses/i2c-tiny-usb.ko
@@ -234,20 +302,20 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/iio/adc/mcp320x.ko
   INSTALL drivers/iio/adc/mcp3422.ko
   INSTALL drivers/iio/buffer/industrialio-buffer-cb.ko
-  INSTALL drivers/iio/buffer/industrialio-triggered-buffer.ko
   INSTALL drivers/iio/buffer/kfifo_buf.ko
+  INSTALL drivers/iio/buffer/industrialio-triggered-buffer.ko
   INSTALL drivers/iio/common/ms_sensors/ms_sensors_i2c.ko
   INSTALL drivers/iio/humidity/dht11.ko
-  INSTALL drivers/iio/humidity/hdc100x.ko
   INSTALL drivers/iio/humidity/htu21.ko
+  INSTALL drivers/iio/humidity/hdc100x.ko
   INSTALL drivers/iio/imu/inv_mpu6050/inv-mpu6050-i2c.ko
   INSTALL drivers/iio/imu/inv_mpu6050/inv-mpu6050.ko
   INSTALL drivers/iio/industrialio.ko
   INSTALL drivers/iio/light/tsl4531.ko
   INSTALL drivers/iio/light/veml6070.ko
-  INSTALL drivers/iio/pressure/bmp280-i2c.ko
   INSTALL drivers/iio/pressure/bmp280-spi.ko
   INSTALL drivers/iio/pressure/bmp280.ko
+  INSTALL drivers/iio/pressure/bmp280-i2c.ko
   INSTALL drivers/input/evdev.ko
   INSTALL drivers/input/ff-memless.ko
   INSTALL drivers/input/gameport/gameport.ko
@@ -262,18 +330,18 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/input/keyboard/gpio_keys.ko
   INSTALL drivers/input/keyboard/matrix_keypad.ko
   INSTALL drivers/input/matrix-keymap.ko
-  INSTALL drivers/input/misc/ad714x-i2c.ko
   INSTALL drivers/input/misc/ad714x-spi.ko
+  INSTALL drivers/input/misc/ad714x-i2c.ko
   INSTALL drivers/input/misc/ad714x.ko
   INSTALL drivers/input/misc/adxl34x-i2c.ko
   INSTALL drivers/input/misc/adxl34x-spi.ko
   INSTALL drivers/input/misc/adxl34x.ko
   INSTALL drivers/input/misc/ati_remote2.ko
   INSTALL drivers/input/misc/cm109.ko
-  INSTALL drivers/input/misc/cma3000_d0x.ko
   INSTALL drivers/input/misc/keyspan_remote.ko
-  INSTALL drivers/input/misc/powermate.ko
+  INSTALL drivers/input/misc/cma3000_d0x.ko
   INSTALL drivers/input/misc/rotary_encoder.ko
+  INSTALL drivers/input/misc/powermate.ko
   INSTALL drivers/input/misc/uinput.ko
   INSTALL drivers/input/misc/yealink.ko
   INSTALL drivers/input/serio/serio.ko
@@ -287,8 +355,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/input/touchscreen/rpi-ft5406.ko
   INSTALL drivers/input/touchscreen/stmpe-ts.ko
   INSTALL drivers/input/touchscreen/usbtouchscreen.ko
-  INSTALL drivers/leds/leds-pca963x.ko
   INSTALL drivers/leds/trigger/ledtrig-camera.ko
+  INSTALL drivers/leds/leds-pca963x.ko
   INSTALL drivers/leds/trigger/ledtrig-transient.ko
   INSTALL drivers/md/dm-bio-prison.ko
   INSTALL drivers/md/dm-bufio.ko
@@ -296,12 +364,12 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/md/dm-cache.ko
   INSTALL drivers/md/dm-crypt.ko
   INSTALL drivers/md/dm-delay.ko
-  INSTALL drivers/md/dm-log.ko
   INSTALL drivers/md/dm-log-userspace.ko
+  INSTALL drivers/md/dm-log.ko
   INSTALL drivers/md/dm-mirror.ko
   INSTALL drivers/md/dm-mod.ko
-  INSTALL drivers/md/dm-raid.ko
   INSTALL drivers/md/dm-region-hash.ko
+  INSTALL drivers/md/dm-raid.ko
   INSTALL drivers/md/dm-snapshot.ko
   INSTALL drivers/md/dm-thin-pool.ko
   INSTALL drivers/md/dm-zero.ko
@@ -315,8 +383,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/common/b2c2/b2c2-flexcop.ko
   INSTALL drivers/media/common/cx2341x.ko
   INSTALL drivers/media/common/cypress_firmware.ko
-  INSTALL drivers/media/common/siano/smsdvb.ko
   INSTALL drivers/media/common/siano/smsmdtv.ko
+  INSTALL drivers/media/common/siano/smsdvb.ko
   INSTALL drivers/media/common/tveeprom.ko
   INSTALL drivers/media/dvb-core/dvb-core.ko
   INSTALL drivers/media/dvb-frontends/a8293.ko
@@ -336,21 +404,21 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/dvb-frontends/cx24116.ko
   INSTALL drivers/media/dvb-frontends/cx24117.ko
   INSTALL drivers/media/dvb-frontends/cx24120.ko
-  INSTALL drivers/media/dvb-frontends/cx24123.ko
   INSTALL drivers/media/dvb-frontends/cxd2820r.ko
+  INSTALL drivers/media/dvb-frontends/cx24123.ko
   INSTALL drivers/media/dvb-frontends/cxd2841er.ko
-  INSTALL drivers/media/dvb-frontends/cxd2880/cxd2880.ko
   INSTALL drivers/media/dvb-frontends/dib0070.ko
+  INSTALL drivers/media/dvb-frontends/cxd2880/cxd2880.ko
   INSTALL drivers/media/dvb-frontends/dib0090.ko
   INSTALL drivers/media/dvb-frontends/dib3000mb.ko
-  INSTALL drivers/media/dvb-frontends/dib3000mc.ko
   INSTALL drivers/media/dvb-frontends/dib7000m.ko
   INSTALL drivers/media/dvb-frontends/dib7000p.ko
+  INSTALL drivers/media/dvb-frontends/dib3000mc.ko
   INSTALL drivers/media/dvb-frontends/dib8000.ko
   INSTALL drivers/media/dvb-frontends/dib9000.ko
   INSTALL drivers/media/dvb-frontends/dibx000_common.ko
-  INSTALL drivers/media/dvb-frontends/drx39xyj/drx39xyj.ko
   INSTALL drivers/media/dvb-frontends/drxd.ko
+  INSTALL drivers/media/dvb-frontends/drx39xyj/drx39xyj.ko
   INSTALL drivers/media/dvb-frontends/drxk.ko
   INSTALL drivers/media/dvb-frontends/ds3000.ko
   INSTALL drivers/media/dvb-frontends/dvb-pll.ko
@@ -360,8 +428,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/dvb-frontends/horus3a.ko
   INSTALL drivers/media/dvb-frontends/isl6405.ko
   INSTALL drivers/media/dvb-frontends/isl6421.ko
-  INSTALL drivers/media/dvb-frontends/isl6423.ko
   INSTALL drivers/media/dvb-frontends/itd1000.ko
+  INSTALL drivers/media/dvb-frontends/isl6423.ko
   INSTALL drivers/media/dvb-frontends/ix2505v.ko
   INSTALL drivers/media/dvb-frontends/l64781.ko
   INSTALL drivers/media/dvb-frontends/lg2160.ko
@@ -389,8 +457,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/dvb-frontends/rtl2830.ko
   INSTALL drivers/media/dvb-frontends/rtl2832.ko
   INSTALL drivers/media/dvb-frontends/s5h1409.ko
-  INSTALL drivers/media/dvb-frontends/s5h1411.ko
   INSTALL drivers/media/dvb-frontends/s5h1420.ko
+  INSTALL drivers/media/dvb-frontends/s5h1411.ko
   INSTALL drivers/media/dvb-frontends/s5h1432.ko
   INSTALL drivers/media/dvb-frontends/s921.ko
   INSTALL drivers/media/dvb-frontends/si2165.ko
@@ -398,10 +466,10 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/dvb-frontends/si21xx.ko
   INSTALL drivers/media/dvb-frontends/sp2.ko
   INSTALL drivers/media/dvb-frontends/sp8870.ko
-  INSTALL drivers/media/dvb-frontends/sp887x.ko
   INSTALL drivers/media/dvb-frontends/stb0899.ko
-  INSTALL drivers/media/dvb-frontends/stb6000.ko
+  INSTALL drivers/media/dvb-frontends/sp887x.ko
   INSTALL drivers/media/dvb-frontends/stb6100.ko
+  INSTALL drivers/media/dvb-frontends/stb6000.ko
   INSTALL drivers/media/dvb-frontends/stv0288.ko
   INSTALL drivers/media/dvb-frontends/stv0297.ko
   INSTALL drivers/media/dvb-frontends/stv0299.ko
@@ -419,18 +487,18 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/dvb-frontends/tda1004x.ko
   INSTALL drivers/media/dvb-frontends/tda10071.ko
   INSTALL drivers/media/dvb-frontends/tda10086.ko
-  INSTALL drivers/media/dvb-frontends/tda18271c2dd.ko
-  INSTALL drivers/media/dvb-frontends/tda665x.ko
   INSTALL drivers/media/dvb-frontends/tda8083.ko
+  INSTALL drivers/media/dvb-frontends/tda665x.ko
   INSTALL drivers/media/dvb-frontends/tda8261.ko
+  INSTALL drivers/media/dvb-frontends/tda18271c2dd.ko
   INSTALL drivers/media/dvb-frontends/tda826x.ko
   INSTALL drivers/media/dvb-frontends/ts2020.ko
   INSTALL drivers/media/dvb-frontends/tua6100.ko
   INSTALL drivers/media/dvb-frontends/ves1820.ko
   INSTALL drivers/media/dvb-frontends/ves1x93.ko
   INSTALL drivers/media/dvb-frontends/zd1301_demod.ko
-  INSTALL drivers/media/dvb-frontends/zl10036.ko
   INSTALL drivers/media/dvb-frontends/zl10039.ko
+  INSTALL drivers/media/dvb-frontends/zl10036.ko
   INSTALL drivers/media/dvb-frontends/zl10353.ko
   INSTALL drivers/media/i2c/adv7180.ko
   INSTALL drivers/media/i2c/cs53l32a.ko
@@ -443,29 +511,29 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/i2c/saa7115.ko
   INSTALL drivers/media/i2c/sony-btf-mpx.ko
   INSTALL drivers/media/i2c/tc358743.ko
-  INSTALL drivers/media/i2c/tvp5150.ko
   INSTALL drivers/media/i2c/tw2804.ko
   INSTALL drivers/media/i2c/tw9903.ko
+  INSTALL drivers/media/i2c/tvp5150.ko
   INSTALL drivers/media/i2c/tw9906.ko
-  INSTALL drivers/media/i2c/uda1342.ko
-  INSTALL drivers/media/i2c/wm8775.ko
   INSTALL drivers/media/media.ko
+  INSTALL drivers/media/i2c/wm8775.ko
+  INSTALL drivers/media/i2c/uda1342.ko
   INSTALL drivers/media/pci/ttpci/ttpci-eeprom.ko
   INSTALL drivers/media/platform/bcm2835/bcm2835-unicam.ko
-  INSTALL drivers/media/radio/dsbr100.ko
   INSTALL drivers/media/radio/radio-keene.ko
+  INSTALL drivers/media/radio/dsbr100.ko
   INSTALL drivers/media/radio/radio-ma901.ko
   INSTALL drivers/media/radio/radio-mr800.ko
   INSTALL drivers/media/radio/radio-shark.ko
   INSTALL drivers/media/radio/radio-tea5764.ko
   INSTALL drivers/media/radio/radio-wl1273.ko
-  INSTALL drivers/media/radio/saa7706h.ko
   INSTALL drivers/media/radio/shark2.ko
   INSTALL drivers/media/radio/si470x/radio-i2c-si470x.ko
+  INSTALL drivers/media/radio/saa7706h.ko
   INSTALL drivers/media/radio/si470x/radio-usb-si470x.ko
   INSTALL drivers/media/radio/si4713/si4713.ko
-  INSTALL drivers/media/radio/tea575x.ko
   INSTALL drivers/media/radio/tef6862.ko
+  INSTALL drivers/media/radio/tea575x.ko
   INSTALL drivers/media/radio/wl128x/fm_drv.ko
   INSTALL drivers/media/rc/ati_remote.ko
   INSTALL drivers/media/rc/gpio-ir-recv.ko
@@ -476,12 +544,12 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/rc/lirc_dev.ko
   INSTALL drivers/media/rc/mceusb.ko
   INSTALL drivers/media/rc/pwm-ir-tx.ko
-  INSTALL drivers/media/rc/rc-loopback.ko
   INSTALL drivers/media/rc/redrat3.ko
+  INSTALL drivers/media/rc/rc-loopback.ko
   INSTALL drivers/media/rc/streamzap.ko
   INSTALL drivers/media/rc/ttusbir.ko
-  INSTALL drivers/media/spi/cxd2880-spi.ko
   INSTALL drivers/media/tuners/e4000.ko
+  INSTALL drivers/media/spi/cxd2880-spi.ko
   INSTALL drivers/media/tuners/fc0011.ko
   INSTALL drivers/media/tuners/fc0012.ko
   INSTALL drivers/media/tuners/fc0013.ko
@@ -504,8 +572,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/tuners/r820t.ko
   INSTALL drivers/media/tuners/si2157.ko
   INSTALL drivers/media/tuners/tda18212.ko
-  INSTALL drivers/media/tuners/tda18218.ko
   INSTALL drivers/media/tuners/tda18271.ko
+  INSTALL drivers/media/tuners/tda18218.ko
   INSTALL drivers/media/tuners/tda827x.ko
   INSTALL drivers/media/tuners/tda8290.ko
   INSTALL drivers/media/tuners/tda9887.ko
@@ -513,11 +581,11 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/tuners/tea5767.ko
   INSTALL drivers/media/tuners/tua9001.ko
   INSTALL drivers/media/tuners/tuner-simple.ko
-  INSTALL drivers/media/tuners/tuner-types.ko
   INSTALL drivers/media/tuners/tuner-xc2028.ko
+  INSTALL drivers/media/tuners/tuner-types.ko
   INSTALL drivers/media/tuners/xc4000.ko
-  INSTALL drivers/media/tuners/xc5000.ko
   INSTALL drivers/media/usb/as102/dvb-as102.ko
+  INSTALL drivers/media/tuners/xc5000.ko
   INSTALL drivers/media/usb/au0828/au0828.ko
   INSTALL drivers/media/usb/b2c2/b2c2-flexcop-usb.ko
   INSTALL drivers/media/usb/cpia2/cpia2.ko
@@ -531,8 +599,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/usb/dvb-usb-v2/dvb-usb-az6007.ko
   INSTALL drivers/media/usb/dvb-usb-v2/dvb-usb-ce6230.ko
   INSTALL drivers/media/usb/dvb-usb-v2/dvb-usb-dvbsky.ko
-  INSTALL drivers/media/usb/dvb-usb-v2/dvb-usb-gl861.ko
   INSTALL drivers/media/usb/dvb-usb-v2/dvb-usb-ec168.ko
+  INSTALL drivers/media/usb/dvb-usb-v2/dvb-usb-gl861.ko
   INSTALL drivers/media/usb/dvb-usb-v2/dvb-usb-lmedm04.ko
   INSTALL drivers/media/usb/dvb-usb-v2/dvb-usb-mxl111sf.ko
   INSTALL drivers/media/usb/dvb-usb-v2/dvb-usb-rtl28xxu.ko
@@ -583,10 +651,10 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/usb/gspca/gspca_etoms.ko
   INSTALL drivers/media/usb/gspca/gspca_finepix.ko
   INSTALL drivers/media/usb/gspca/gspca_jeilinj.ko
-  INSTALL drivers/media/usb/gspca/gspca_jl2005bcd.ko
   INSTALL drivers/media/usb/gspca/gspca_kinect.ko
-  INSTALL drivers/media/usb/gspca/gspca_konica.ko
+  INSTALL drivers/media/usb/gspca/gspca_jl2005bcd.ko
   INSTALL drivers/media/usb/gspca/gspca_main.ko
+  INSTALL drivers/media/usb/gspca/gspca_konica.ko
   INSTALL drivers/media/usb/gspca/gspca_mars.ko
   INSTALL drivers/media/usb/gspca/gspca_mr97310a.ko
   INSTALL drivers/media/usb/gspca/gspca_nw80x.ko
@@ -605,8 +673,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/usb/gspca/gspca_spca500.ko
   INSTALL drivers/media/usb/gspca/gspca_spca501.ko
   INSTALL drivers/media/usb/gspca/gspca_spca505.ko
-  INSTALL drivers/media/usb/gspca/gspca_spca506.ko
   INSTALL drivers/media/usb/gspca/gspca_spca508.ko
+  INSTALL drivers/media/usb/gspca/gspca_spca506.ko
   INSTALL drivers/media/usb/gspca/gspca_spca561.ko
   INSTALL drivers/media/usb/gspca/gspca_sq905.ko
   INSTALL drivers/media/usb/gspca/gspca_sq905c.ko
@@ -634,8 +702,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/usb/tm6000/tm6000-alsa.ko
   INSTALL drivers/media/usb/tm6000/tm6000-dvb.ko
   INSTALL drivers/media/usb/tm6000/tm6000.ko
-  INSTALL drivers/media/usb/usbtv/usbtv.ko
   INSTALL drivers/media/usb/usbvision/usbvision.ko
+  INSTALL drivers/media/usb/usbtv/usbtv.ko
   INSTALL drivers/media/usb/uvc/uvcvideo.ko
   INSTALL drivers/media/usb/zr364xx/zr364xx.ko
   INSTALL drivers/media/v4l2-core/tuner.ko
@@ -648,8 +716,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/media/v4l2-core/videobuf2-core.ko
   INSTALL drivers/media/v4l2-core/videobuf2-dma-contig.ko
   INSTALL drivers/media/v4l2-core/videobuf2-memops.ko
-  INSTALL drivers/media/v4l2-core/videobuf2-v4l2.ko
   INSTALL drivers/media/v4l2-core/videobuf2-vmalloc.ko
+  INSTALL drivers/media/v4l2-core/videobuf2-v4l2.ko
   INSTALL drivers/media/v4l2-core/videodev.ko
   INSTALL drivers/mfd/arizona-i2c.ko
   INSTALL drivers/mfd/arizona-spi.ko
@@ -657,14 +725,14 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/mfd/wl1273-core.ko
   INSTALL drivers/misc/bcm2835_smi.ko
   INSTALL drivers/misc/eeprom/at24.ko
-  INSTALL drivers/misc/eeprom/eeprom_93cx6.ko
   INSTALL drivers/misc/ti-st/st_drv.ko
+  INSTALL drivers/misc/eeprom/eeprom_93cx6.ko
   INSTALL drivers/mmc/host/mmc_spi.ko
   INSTALL drivers/mmc/host/of_mmc_spi.ko
   INSTALL drivers/mtd/chips/chipreg.ko
   INSTALL drivers/mtd/devices/block2mtd.ko
-  INSTALL drivers/mtd/mtd.ko
   INSTALL drivers/mtd/devices/m25p80.ko
+  INSTALL drivers/mtd/mtd.ko
   INSTALL drivers/mtd/mtd_blkdevs.ko
   INSTALL drivers/mtd/mtdblock.ko
   INSTALL drivers/mtd/nand/bcm2835_smi_nand.ko
@@ -672,8 +740,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/mtd/nand/nand_ecc.ko
   INSTALL drivers/mtd/ofpart.ko
   INSTALL drivers/mtd/spi-nor/spi-nor.ko
-  INSTALL drivers/mtd/ubi/ubi.ko
   INSTALL drivers/mux/mux-core.ko
+  INSTALL drivers/mtd/ubi/ubi.ko
   INSTALL drivers/net/bonding/bonding.ko
   INSTALL drivers/net/can/can-dev.ko
   INSTALL drivers/net/can/slcan.ko
@@ -694,21 +762,21 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/net/ieee802154/at86rf230.ko
   INSTALL drivers/net/ieee802154/cc2520.ko
   INSTALL drivers/net/ieee802154/mrf24j40.ko
-  INSTALL drivers/net/ipvlan/ipvlan.ko
   INSTALL drivers/net/ifb.ko
+  INSTALL drivers/net/ipvlan/ipvlan.ko
   INSTALL drivers/net/macvlan.ko
   INSTALL drivers/net/netconsole.ko
   INSTALL drivers/net/phy/mdio-bitbang.ko
   INSTALL drivers/net/ppp/bsd_comp.ko
   INSTALL drivers/net/ppp/ppp_async.ko
-  INSTALL drivers/net/ppp/ppp_deflate.ko
   INSTALL drivers/net/ppp/ppp_generic.ko
+  INSTALL drivers/net/ppp/ppp_deflate.ko
   INSTALL drivers/net/ppp/ppp_mppe.ko
   INSTALL drivers/net/ppp/ppp_synctty.ko
-  INSTALL drivers/net/ppp/pppoe.ko
   INSTALL drivers/net/ppp/pppox.ko
-  INSTALL drivers/net/slip/slip.ko
+  INSTALL drivers/net/ppp/pppoe.ko
   INSTALL drivers/net/slip/slhc.ko
+  INSTALL drivers/net/slip/slip.ko
   INSTALL drivers/net/tun.ko
   INSTALL drivers/net/usb/asix.ko
   INSTALL drivers/net/usb/ax88179_178a.ko
@@ -716,19 +784,19 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/net/usb/cdc_eem.ko
   INSTALL drivers/net/usb/cdc_ether.ko
   INSTALL drivers/net/usb/cdc_mbim.ko
-  INSTALL drivers/net/usb/cdc_ncm.ko
   INSTALL drivers/net/usb/cdc_subset.ko
+  INSTALL drivers/net/usb/cdc_ncm.ko
   INSTALL drivers/net/usb/cx82310_eth.ko
-  INSTALL drivers/net/usb/dm9601.ko
   INSTALL drivers/net/usb/gl620a.ko
+  INSTALL drivers/net/usb/dm9601.ko
   INSTALL drivers/net/usb/hso.ko
   INSTALL drivers/net/usb/huawei_cdc_ncm.ko
   INSTALL drivers/net/usb/int51x1.ko
   INSTALL drivers/net/usb/ipheth.ko
   INSTALL drivers/net/usb/kalmia.ko
   INSTALL drivers/net/usb/kaweth.ko
-  INSTALL drivers/net/usb/mcs7830.ko
   INSTALL drivers/net/usb/lg-vl600.ko
+  INSTALL drivers/net/usb/mcs7830.ko
   INSTALL drivers/net/usb/net1080.ko
   INSTALL drivers/net/usb/pegasus.ko
   INSTALL drivers/net/usb/plusb.ko
@@ -752,10 +820,10 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/net/wireless/ath/ath9k/ath9k.ko
   INSTALL drivers/net/wireless/ath/ath9k/ath9k_common.ko
   INSTALL drivers/net/wireless/ath/ath9k/ath9k_htc.ko
-  INSTALL drivers/net/wireless/ath/ath9k/ath9k_hw.ko
   INSTALL drivers/net/wireless/ath/carl9170/carl9170.ko
-  INSTALL drivers/net/wireless/atmel/at76c50x-usb.ko
+  INSTALL drivers/net/wireless/ath/ath9k/ath9k_hw.ko
   INSTALL drivers/net/wireless/broadcom/b43/b43.ko
+  INSTALL drivers/net/wireless/atmel/at76c50x-usb.ko
   INSTALL drivers/net/wireless/broadcom/b43legacy/b43legacy.ko
   INSTALL drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko
   INSTALL drivers/net/wireless/broadcom/brcm80211/brcmutil/brcmutil.ko
@@ -779,8 +847,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/net/wireless/ralink/rt2x00/rt73usb.ko
   INSTALL drivers/net/wireless/realtek/rtl818x/rtl8187/rtl8187.ko
   INSTALL drivers/net/wireless/realtek/rtl8192cu/8192cu.ko
-  INSTALL drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu.ko
   INSTALL drivers/net/wireless/realtek/rtlwifi/rtl8192c/rtl8192c-common.ko
+  INSTALL drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu.ko
   INSTALL drivers/net/wireless/realtek/rtlwifi/rtl8192cu/rtl8192cu.ko
   INSTALL drivers/net/wireless/realtek/rtlwifi/rtl_usb.ko
   INSTALL drivers/net/wireless/realtek/rtlwifi/rtlwifi.ko
@@ -788,8 +856,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/net/wireless/zydas/zd1201.ko
   INSTALL drivers/net/wireless/zydas/zd1211rw/zd1211rw.ko
   INSTALL drivers/perf/raspberrypi_axi_monitor.ko
-  INSTALL drivers/pinctrl/pinctrl-mcp23s08.ko
   INSTALL drivers/power/supply/ds2760_battery.ko
+  INSTALL drivers/pinctrl/pinctrl-mcp23s08.ko
   INSTALL drivers/power/supply/ltc2941-battery-gauge.ko
   INSTALL drivers/pps/clients/pps-gpio.ko
   INSTALL drivers/pps/clients/pps-ldisc.ko
@@ -804,9 +872,9 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/rtc/rtc-ds1302.ko
   INSTALL drivers/rtc/rtc-ds1305.ko
   INSTALL drivers/rtc/rtc-ds1307.ko
-  INSTALL drivers/rtc/rtc-ds1390.ko
   INSTALL drivers/rtc/rtc-ds1374.ko
   INSTALL drivers/rtc/rtc-ds1672.ko
+  INSTALL drivers/rtc/rtc-ds1390.ko
   INSTALL drivers/rtc/rtc-ds3232.ko
   INSTALL drivers/rtc/rtc-em3027.ko
   INSTALL drivers/rtc/rtc-fm3130.ko
@@ -821,8 +889,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/rtc/rtc-pcf2127.ko
   INSTALL drivers/rtc/rtc-pcf8523.ko
   INSTALL drivers/rtc/rtc-pcf8563.ko
-  INSTALL drivers/rtc/rtc-r9701.ko
   INSTALL drivers/rtc/rtc-pcf8583.ko
+  INSTALL drivers/rtc/rtc-r9701.ko
   INSTALL drivers/rtc/rtc-rs5c348.ko
   INSTALL drivers/rtc/rtc-rs5c372.ko
   INSTALL drivers/rtc/rtc-rv3029c2.ko
@@ -836,22 +904,22 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/scsi/libiscsi.ko
   INSTALL drivers/scsi/libiscsi_tcp.ko
   INSTALL drivers/scsi/osst.ko
-  INSTALL drivers/scsi/sg.ko
   INSTALL drivers/scsi/sr_mod.ko
+  INSTALL drivers/scsi/sg.ko
   INSTALL drivers/scsi/st.ko
   INSTALL drivers/spi/spi-bcm2835.ko
-  INSTALL drivers/spi/spi-bcm2835aux.ko
   INSTALL drivers/spi/spi-bitbang.ko
-  INSTALL drivers/spi/spi-gpio.ko
-  INSTALL drivers/spi/spidev.ko
+  INSTALL drivers/spi/spi-bcm2835aux.ko
   INSTALL drivers/ssb/ssb.ko
+  INSTALL drivers/spi/spidev.ko
+  INSTALL drivers/spi/spi-gpio.ko
   INSTALL drivers/staging/fbtft/fb_agm1264k-fl.ko
   INSTALL drivers/staging/fbtft/fb_bd663474.ko
   INSTALL drivers/staging/fbtft/fb_hx8340bn.ko
   INSTALL drivers/staging/fbtft/fb_hx8347d.ko
   INSTALL drivers/staging/fbtft/fb_hx8353d.ko
-  INSTALL drivers/staging/fbtft/fb_hx8357d.ko
   INSTALL drivers/staging/fbtft/fb_ili9163.ko
+  INSTALL drivers/staging/fbtft/fb_hx8357d.ko
   INSTALL drivers/staging/fbtft/fb_ili9320.ko
   INSTALL drivers/staging/fbtft/fb_ili9325.ko
   INSTALL drivers/staging/fbtft/fb_ili9340.ko
@@ -866,8 +934,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/staging/fbtft/fb_ssd1306.ko
   INSTALL drivers/staging/fbtft/fb_ssd1331.ko
   INSTALL drivers/staging/fbtft/fb_ssd1351.ko
-  INSTALL drivers/staging/fbtft/fb_st7735r.ko
   INSTALL drivers/staging/fbtft/fb_st7789v.ko
+  INSTALL drivers/staging/fbtft/fb_st7735r.ko
   INSTALL drivers/staging/fbtft/fb_tinylcd.ko
   INSTALL drivers/staging/fbtft/fb_tls8204.ko
   INSTALL drivers/staging/fbtft/fb_uc1701.ko
@@ -914,8 +982,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/usb/dwc2/dwc2.ko
   INSTALL drivers/usb/gadget/function/u_audio.ko
   INSTALL drivers/usb/gadget/function/u_ether.ko
-  INSTALL drivers/usb/gadget/function/u_serial.ko
   INSTALL drivers/usb/gadget/function/usb_f_acm.ko
+  INSTALL drivers/usb/gadget/function/u_serial.ko
   INSTALL drivers/usb/gadget/function/usb_f_ecm.ko
   INSTALL drivers/usb/gadget/function/usb_f_ecm_subset.ko
   INSTALL drivers/usb/gadget/function/usb_f_hid.ko
@@ -924,8 +992,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/usb/gadget/function/usb_f_obex.ko
   INSTALL drivers/usb/gadget/function/usb_f_printer.ko
   INSTALL drivers/usb/gadget/function/usb_f_rndis.ko
-  INSTALL drivers/usb/gadget/function/usb_f_serial.ko
   INSTALL drivers/usb/gadget/function/usb_f_ss_lb.ko
+  INSTALL drivers/usb/gadget/function/usb_f_serial.ko
   INSTALL drivers/usb/gadget/function/usb_f_uac2.ko
   INSTALL drivers/usb/gadget/function/usb_f_uvc.ko
   INSTALL drivers/usb/gadget/legacy/g_acm_ms.ko
@@ -938,18 +1006,18 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/usb/gadget/legacy/g_multi.ko
   INSTALL drivers/usb/gadget/legacy/g_printer.ko
   INSTALL drivers/usb/gadget/legacy/g_serial.ko
-  INSTALL drivers/usb/gadget/legacy/g_zero.ko
   INSTALL drivers/usb/gadget/legacy/g_webcam.ko
+  INSTALL drivers/usb/gadget/legacy/g_zero.ko
   INSTALL drivers/usb/gadget/legacy/gadgetfs.ko
   INSTALL drivers/usb/gadget/libcomposite.ko
   INSTALL drivers/usb/gadget/udc/udc-core.ko
   INSTALL drivers/usb/image/mdc800.ko
-  INSTALL drivers/usb/misc/adutux.ko
   INSTALL drivers/usb/image/microtek.ko
+  INSTALL drivers/usb/misc/adutux.ko
   INSTALL drivers/usb/misc/appledisplay.ko
   INSTALL drivers/usb/misc/cypress_cy7c63.ko
-  INSTALL drivers/usb/misc/cytherm.ko
   INSTALL drivers/usb/misc/emi26.ko
+  INSTALL drivers/usb/misc/cytherm.ko
   INSTALL drivers/usb/misc/emi62.ko
   INSTALL drivers/usb/misc/ezusb.ko
   INSTALL drivers/usb/misc/ftdi-elan.ko
@@ -960,11 +1028,11 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/usb/misc/legousbtower.ko
   INSTALL drivers/usb/misc/rio500.ko
   INSTALL drivers/usb/misc/trancevibrator.ko
-  INSTALL drivers/usb/misc/usbsevseg.ko
   INSTALL drivers/usb/misc/usblcd.ko
+  INSTALL drivers/usb/misc/usbsevseg.ko
   INSTALL drivers/usb/misc/usbtest.ko
-  INSTALL drivers/usb/misc/yurex.ko
   INSTALL drivers/usb/mon/usbmon.ko
+  INSTALL drivers/usb/misc/yurex.ko
   INSTALL drivers/usb/serial/aircable.ko
   INSTALL drivers/usb/serial/ark3116.ko
   INSTALL drivers/usb/serial/belkin_sa.ko
@@ -983,8 +1051,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/usb/serial/ipw.ko
   INSTALL drivers/usb/serial/ir-usb.ko
   INSTALL drivers/usb/serial/iuu_phoenix.ko
-  INSTALL drivers/usb/serial/keyspan.ko
   INSTALL drivers/usb/serial/keyspan_pda.ko
+  INSTALL drivers/usb/serial/keyspan.ko
   INSTALL drivers/usb/serial/kl5kusb105.ko
   INSTALL drivers/usb/serial/kobil_sct.ko
   INSTALL drivers/usb/serial/mct_u232.ko
@@ -1016,16 +1084,16 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/usb/storage/uas.ko
   INSTALL drivers/usb/storage/ums-alauda.ko
   INSTALL drivers/usb/storage/ums-cypress.ko
-  INSTALL drivers/usb/storage/ums-eneub6250.ko
   INSTALL drivers/usb/storage/ums-datafab.ko
+  INSTALL drivers/usb/storage/ums-eneub6250.ko
   INSTALL drivers/usb/storage/ums-freecom.ko
   INSTALL drivers/usb/storage/ums-isd200.ko
   INSTALL drivers/usb/storage/ums-jumpshot.ko
   INSTALL drivers/usb/storage/ums-karma.ko
   INSTALL drivers/usb/storage/ums-onetouch.ko
   INSTALL drivers/usb/storage/ums-realtek.ko
-  INSTALL drivers/usb/storage/ums-sddr09.ko
   INSTALL drivers/usb/storage/ums-sddr55.ko
+  INSTALL drivers/usb/storage/ums-sddr09.ko
   INSTALL drivers/usb/storage/ums-usbat.ko
   INSTALL drivers/usb/usbip/usbip-core.ko
   INSTALL drivers/usb/usbip/usbip-host.ko
@@ -1038,8 +1106,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/video/fbdev/core/syscopyarea.ko
   INSTALL drivers/video/fbdev/core/sysfillrect.ko
   INSTALL drivers/video/fbdev/core/sysimgblt.ko
-  INSTALL drivers/video/fbdev/rpisense-fb.ko
   INSTALL drivers/video/fbdev/ssd1307fb.ko
+  INSTALL drivers/video/fbdev/rpisense-fb.ko
   INSTALL drivers/video/fbdev/udlfb.ko
   INSTALL drivers/w1/masters/ds1wm.ko
   INSTALL drivers/w1/masters/ds2482.ko
@@ -1060,10 +1128,10 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL drivers/w1/slaves/w1_therm.ko
   INSTALL drivers/w1/wire.ko
   INSTALL drivers/watchdog/gpio_wdt.ko
-  INSTALL fs/9p/9p.ko
   INSTALL fs/binfmt_misc.ko
-  INSTALL fs/btrfs/btrfs.ko
+  INSTALL fs/9p/9p.ko
   INSTALL fs/cifs/cifs.ko
+  INSTALL fs/btrfs/btrfs.ko
   INSTALL fs/dlm/dlm.ko
   INSTALL fs/ecryptfs/ecryptfs.ko
   INSTALL fs/fuse/cuse.ko
@@ -1072,8 +1140,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL fs/hfs/hfs.ko
   INSTALL fs/hfsplus/hfsplus.ko
   INSTALL fs/isofs/isofs.ko
-  INSTALL fs/jffs2/jffs2.ko
   INSTALL fs/jfs/jfs.ko
+  INSTALL fs/jffs2/jffs2.ko
   INSTALL fs/nfs/blocklayout/blocklayoutdriver.ko
   INSTALL fs/nfs/flexfilelayout/nfs_layout_flexfiles.ko
   INSTALL fs/nfsd/nfsd.ko
@@ -1106,20 +1174,20 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL fs/nls/nls_iso8859-14.ko
   INSTALL fs/nls/nls_iso8859-15.ko
   INSTALL fs/nls/nls_iso8859-2.ko
-  INSTALL fs/nls/nls_iso8859-3.ko
   INSTALL fs/nls/nls_iso8859-4.ko
+  INSTALL fs/nls/nls_iso8859-3.ko
   INSTALL fs/nls/nls_iso8859-5.ko
   INSTALL fs/nls/nls_iso8859-6.ko
   INSTALL fs/nls/nls_iso8859-7.ko
   INSTALL fs/nls/nls_iso8859-9.ko
-  INSTALL fs/nls/nls_koi8-r.ko
   INSTALL fs/nls/nls_koi8-ru.ko
-  INSTALL fs/nls/nls_koi8-u.ko
+  INSTALL fs/nls/nls_koi8-r.ko
   INSTALL fs/nls/nls_utf8.ko
   INSTALL fs/ntfs/ntfs.ko
+  INSTALL fs/nls/nls_koi8-u.ko
   INSTALL fs/ocfs2/cluster/ocfs2_nodemanager.ko
-  INSTALL fs/ocfs2/dlm/ocfs2_dlm.ko
   INSTALL fs/ocfs2/dlmfs/ocfs2_dlmfs.ko
+  INSTALL fs/ocfs2/dlm/ocfs2_dlm.ko
   INSTALL fs/ocfs2/ocfs2.ko
   INSTALL fs/ocfs2/ocfs2_stack_o2cb.ko
   INSTALL fs/ocfs2/ocfs2_stack_user.ko
@@ -1140,21 +1208,21 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL lib/lru_cache.ko
   INSTALL lib/lz4/lz4_compress.ko
   INSTALL lib/lzo/lzo_compress.ko
-  INSTALL lib/raid6/raid6_pq.ko
   INSTALL lib/ts_bm.ko
+  INSTALL lib/raid6/raid6_pq.ko
   INSTALL lib/ts_fsm.ko
   INSTALL lib/ts_kmp.ko
   INSTALL lib/xxhash.ko
   INSTALL lib/zlib_deflate/zlib_deflate.ko
   INSTALL lib/zstd/zstd_compress.ko
-  INSTALL lib/zstd/zstd_decompress.ko
   INSTALL mm/zsmalloc.ko
+  INSTALL lib/zstd/zstd_decompress.ko
+  INSTALL net/6lowpan/nhc_dest.ko
   INSTALL net/6lowpan/6lowpan.ko
   INSTALL net/6lowpan/nhc_fragment.ko
-  INSTALL net/6lowpan/nhc_dest.ko
   INSTALL net/6lowpan/nhc_hop.ko
-  INSTALL net/6lowpan/nhc_ipv6.ko
   INSTALL net/6lowpan/nhc_mobility.ko
+  INSTALL net/6lowpan/nhc_ipv6.ko
   INSTALL net/6lowpan/nhc_routing.ko
   INSTALL net/6lowpan/nhc_udp.ko
   INSTALL net/802/garp.ko
@@ -1197,8 +1265,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL net/bridge/netfilter/ebtable_nat.ko
   INSTALL net/bridge/netfilter/ebtables.ko
   INSTALL net/can/can-bcm.ko
-  INSTALL net/can/can-gw.ko
   INSTALL net/can/can-raw.ko
+  INSTALL net/can/can-gw.ko
   INSTALL net/can/can.ko
   INSTALL net/core/pktgen.ko
   INSTALL net/ieee802154/6lowpan/ieee802154_6lowpan.ko
@@ -1217,21 +1285,21 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL net/ipv4/netfilter/arpt_mangle.ko
   INSTALL net/ipv4/netfilter/arptable_filter.ko
   INSTALL net/ipv4/netfilter/ip_tables.ko
-  INSTALL net/ipv4/netfilter/ipt_CLUSTERIP.ko
   INSTALL net/ipv4/netfilter/ipt_ECN.ko
+  INSTALL net/ipv4/netfilter/ipt_CLUSTERIP.ko
   INSTALL net/ipv4/netfilter/ipt_MASQUERADE.ko
   INSTALL net/ipv4/netfilter/ipt_REJECT.ko
   INSTALL net/ipv4/netfilter/ipt_ah.ko
   INSTALL net/ipv4/netfilter/ipt_rpfilter.ko
-  INSTALL net/ipv4/netfilter/iptable_filter.ko
   INSTALL net/ipv4/netfilter/iptable_mangle.ko
+  INSTALL net/ipv4/netfilter/iptable_filter.ko
   INSTALL net/ipv4/netfilter/iptable_nat.ko
-  INSTALL net/ipv4/netfilter/iptable_raw.ko
   INSTALL net/ipv4/netfilter/nf_conntrack_ipv4.ko
+  INSTALL net/ipv4/netfilter/iptable_raw.ko
   INSTALL net/ipv4/netfilter/nf_defrag_ipv4.ko
   INSTALL net/ipv4/netfilter/nf_dup_ipv4.ko
-  INSTALL net/ipv4/netfilter/nf_log_ipv4.ko
   INSTALL net/ipv4/netfilter/nf_nat_h323.ko
+  INSTALL net/ipv4/netfilter/nf_log_ipv4.ko
   INSTALL net/ipv4/netfilter/nf_nat_ipv4.ko
   INSTALL net/ipv4/netfilter/nf_nat_masquerade_ipv4.ko
   INSTALL net/ipv4/netfilter/nf_nat_pptp.ko
@@ -1250,8 +1318,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL net/ipv4/xfrm4_mode_tunnel.ko
   INSTALL net/ipv4/xfrm4_tunnel.ko
   INSTALL net/ipv6/ah6.ko
-  INSTALL net/ipv6/esp6.ko
   INSTALL net/ipv6/ip6_tunnel.ko
+  INSTALL net/ipv6/esp6.ko
   INSTALL net/ipv6/ip6_udp_tunnel.ko
   INSTALL net/ipv6/ipcomp6.ko
   INSTALL net/ipv6/ipv6.ko
@@ -1283,14 +1351,14 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL net/ipv6/xfrm6_mode_beet.ko
   INSTALL net/ipv6/xfrm6_mode_transport.ko
   INSTALL net/ipv6/xfrm6_mode_tunnel.ko
-  INSTALL net/ipv6/xfrm6_tunnel.ko
   INSTALL net/key/af_key.ko
+  INSTALL net/ipv6/xfrm6_tunnel.ko
   INSTALL net/l2tp/l2tp_core.ko
   INSTALL net/l2tp/l2tp_eth.ko
   INSTALL net/l2tp/l2tp_ip.ko
   INSTALL net/l2tp/l2tp_ip6.ko
-  INSTALL net/l2tp/l2tp_netlink.ko
   INSTALL net/l2tp/l2tp_ppp.ko
+  INSTALL net/l2tp/l2tp_netlink.ko
   INSTALL net/llc/llc.ko
   INSTALL net/mac80211/mac80211.ko
   INSTALL net/mac802154/mac802154.ko
@@ -1301,8 +1369,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL net/netfilter/ipset/ip_set_bitmap_port.ko
   INSTALL net/netfilter/ipset/ip_set_hash_ip.ko
   INSTALL net/netfilter/ipset/ip_set_hash_ipport.ko
-  INSTALL net/netfilter/ipset/ip_set_hash_ipportip.ko
   INSTALL net/netfilter/ipset/ip_set_hash_ipportnet.ko
+  INSTALL net/netfilter/ipset/ip_set_hash_ipportip.ko
   INSTALL net/netfilter/ipset/ip_set_hash_net.ko
   INSTALL net/netfilter/ipset/ip_set_hash_netiface.ko
   INSTALL net/netfilter/ipset/ip_set_hash_netport.ko
@@ -1342,8 +1410,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL net/netfilter/nf_nat_redirect.ko
   INSTALL net/netfilter/nf_nat_sip.ko
   INSTALL net/netfilter/nf_nat_tftp.ko
-  INSTALL net/netfilter/nfnetlink.ko
   INSTALL net/netfilter/nfnetlink_acct.ko
+  INSTALL net/netfilter/nfnetlink.ko
   INSTALL net/netfilter/nfnetlink_log.ko
   INSTALL net/netfilter/nfnetlink_queue.ko
   INSTALL net/netfilter/x_tables.ko
@@ -1379,8 +1447,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL net/netfilter/xt_dccp.ko
   INSTALL net/netfilter/xt_devgroup.ko
   INSTALL net/netfilter/xt_dscp.ko
-  INSTALL net/netfilter/xt_ecn.ko
   INSTALL net/netfilter/xt_esp.ko
+  INSTALL net/netfilter/xt_ecn.ko
   INSTALL net/netfilter/xt_hashlimit.ko
   INSTALL net/netfilter/xt_helper.ko
   INSTALL net/netfilter/xt_hl.ko
@@ -1394,9 +1462,9 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL net/netfilter/xt_multiport.ko
   INSTALL net/netfilter/xt_nat.ko
   INSTALL net/netfilter/xt_nfacct.ko
-  INSTALL net/netfilter/xt_owner.ko
   INSTALL net/netfilter/xt_osf.ko
   INSTALL net/netfilter/xt_physdev.ko
+  INSTALL net/netfilter/xt_owner.ko
   INSTALL net/netfilter/xt_pkttype.ko
   INSTALL net/netfilter/xt_policy.ko
   INSTALL net/netfilter/xt_quota.ko
@@ -1410,8 +1478,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL net/netfilter/xt_string.ko
   INSTALL net/netfilter/xt_tcpmss.ko
   INSTALL net/netfilter/xt_tcpudp.ko
-  INSTALL net/netfilter/xt_time.ko
   INSTALL net/netfilter/xt_u32.ko
+  INSTALL net/netfilter/xt_time.ko
   INSTALL net/netrom/netrom.ko
   INSTALL net/nfc/nfc.ko
   INSTALL net/openvswitch/openvswitch.ko
@@ -1432,8 +1500,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL net/sched/cls_cgroup.ko
   INSTALL net/sched/cls_flow.ko
   INSTALL net/sched/cls_fw.ko
-  INSTALL net/sched/cls_route.ko
   INSTALL net/sched/cls_rsvp.ko
+  INSTALL net/sched/cls_route.ko
   INSTALL net/sched/cls_rsvp6.ko
   INSTALL net/sched/cls_tcindex.ko
   INSTALL net/sched/cls_u32.ko
@@ -1462,13 +1530,13 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL net/sched/sch_pie.ko
   INSTALL net/sched/sch_plug.ko
   INSTALL net/sched/sch_prio.ko
-  INSTALL net/sched/sch_qfq.ko
   INSTALL net/sched/sch_red.ko
+  INSTALL net/sched/sch_qfq.ko
   INSTALL net/sched/sch_sfb.ko
   INSTALL net/sched/sch_sfq.ko
   INSTALL net/sched/sch_tbf.ko
-  INSTALL net/sched/sch_teql.ko
   INSTALL net/sctp/sctp.ko
+  INSTALL net/sched/sch_teql.ko
   INSTALL net/sctp/sctp_diag.ko
   INSTALL net/sunrpc/auth_gss/rpcsec_gss_krb5.ko
   INSTALL net/wimax/wimax.ko
@@ -1529,8 +1597,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL sound/soc/bcm/snd-soc-rpi-proto.ko
   INSTALL sound/soc/codecs/snd-soc-ad193x-i2c.ko
   INSTALL sound/soc/codecs/snd-soc-ad193x-spi.ko
-  INSTALL sound/soc/codecs/snd-soc-adau1701.ko
   INSTALL sound/soc/codecs/snd-soc-ad193x.ko
+  INSTALL sound/soc/codecs/snd-soc-adau1701.ko
   INSTALL sound/soc/codecs/snd-soc-adau1977-i2c.ko
   INSTALL sound/soc/codecs/snd-soc-adau1977.ko
   INSTALL sound/soc/codecs/snd-soc-adau7002.ko
@@ -1640,8 +1708,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL arch/arm/boot/dts/overlays/hifiberry-digi-pro.dtbo
   INSTALL arch/arm/boot/dts/overlays/hy28a.dtbo
   INSTALL arch/arm/boot/dts/overlays/hy28b.dtbo
-  INSTALL arch/arm/boot/dts/overlays/hy28b-2017.dtbo
   INSTALL arch/arm/boot/dts/overlays/i2c-bcm2708.dtbo
+  INSTALL arch/arm/boot/dts/overlays/hy28b-2017.dtbo
   INSTALL arch/arm/boot/dts/overlays/i2c-gpio.dtbo
   INSTALL arch/arm/boot/dts/overlays/i2c-mux.dtbo
   INSTALL arch/arm/boot/dts/overlays/i2c-pwm-pca9685a.dtbo
@@ -1657,8 +1725,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL arch/arm/boot/dts/overlays/jedec-spi-nor.dtbo
   INSTALL arch/arm/boot/dts/overlays/justboom-dac.dtbo
   INSTALL arch/arm/boot/dts/overlays/justboom-digi.dtbo
-  INSTALL arch/arm/boot/dts/overlays/lirc-rpi.dtbo
   INSTALL arch/arm/boot/dts/overlays/ltc294x.dtbo
+  INSTALL arch/arm/boot/dts/overlays/lirc-rpi.dtbo
   INSTALL arch/arm/boot/dts/overlays/mbed-dac.dtbo
   INSTALL arch/arm/boot/dts/overlays/mcp23017.dtbo
   INSTALL arch/arm/boot/dts/overlays/mcp23s17.dtbo
@@ -1678,8 +1746,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL arch/arm/boot/dts/overlays/pi3-act-led.dtbo
   INSTALL arch/arm/boot/dts/overlays/pi3-disable-bt.dtbo
   INSTALL arch/arm/boot/dts/overlays/pi3-disable-wifi.dtbo
-  INSTALL arch/arm/boot/dts/overlays/pi3-miniuart-bt.dtbo
   INSTALL arch/arm/boot/dts/overlays/pibell.dtbo
+  INSTALL arch/arm/boot/dts/overlays/pi3-miniuart-bt.dtbo
   INSTALL arch/arm/boot/dts/overlays/piscreen.dtbo
   INSTALL arch/arm/boot/dts/overlays/piscreen2r.dtbo
   INSTALL arch/arm/boot/dts/overlays/pisound.dtbo
@@ -1690,8 +1758,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL arch/arm/boot/dts/overlays/pps-gpio.dtbo
   INSTALL arch/arm/boot/dts/overlays/pwm.dtbo
   INSTALL arch/arm/boot/dts/overlays/pwm-2chan.dtbo
-  INSTALL arch/arm/boot/dts/overlays/pwm-ir-tx.dtbo
   INSTALL arch/arm/boot/dts/overlays/qca7000.dtbo
+  INSTALL arch/arm/boot/dts/overlays/pwm-ir-tx.dtbo
   INSTALL arch/arm/boot/dts/overlays/rotary-encoder.dtbo
   INSTALL arch/arm/boot/dts/overlays/rpi-backlight.dtbo
   INSTALL arch/arm/boot/dts/overlays/rpi-cirrus-wm5102.dtbo
@@ -1702,8 +1770,8 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL arch/arm/boot/dts/overlays/rpi-proto.dtbo
   INSTALL arch/arm/boot/dts/overlays/rpi-sense.dtbo
   INSTALL arch/arm/boot/dts/overlays/rpi-tv.dtbo
-  INSTALL arch/arm/boot/dts/overlays/rra-digidac1-wm8741-audio.dtbo
   INSTALL arch/arm/boot/dts/overlays/sc16is750-i2c.dtbo
+  INSTALL arch/arm/boot/dts/overlays/rra-digidac1-wm8741-audio.dtbo
   INSTALL arch/arm/boot/dts/overlays/sc16is752-i2c.dtbo
   INSTALL arch/arm/boot/dts/overlays/sc16is752-spi1.dtbo
   INSTALL arch/arm/boot/dts/overlays/sdhost.dtbo
@@ -1743,7 +1811,7 @@ make[1]: Entering directory '/home/taian/TCC-Kernel/rpi/linux'
   INSTALL arch/arm/boot/dts/overlays/wittypi.dtbo
 make[1]: Leaving directory '/home/taian/TCC-Kernel/rpi/linux'
 mkdir: cannot create directory ‘../rpi-kernel/boot’: File exists
-Version: Linux version 4.14.114-v7+ (taian@DESKTOP-LPQ6DVL) (gcc version 4.8.3 20140303 (prerelease) (crosstool-NG linaro-1.13.1+bzr2650 - Linaro GCC 2014.03)) #3 SMP Thu May 30 01:19:33 -03 2019
+Version: Linux version 4.14.114-v7+ (taian@DESKTOP-LPQ6DVL) (gcc version 4.8.3 20140303 (prerelease) (crosstool-NG linaro-1.13.1+bzr2650 - Linaro GCC 2014.03)) #4 SMP Thu May 30 14:26:57 -03 2019
 DT: y
 DDT: y
 270x: y
