@@ -3,8 +3,11 @@ import csv
 import sys
 
 print("This is the name of the script: \"" + sys.argv[0] + "\"")
+if len(sys.argv) != 2:
+    print("Especify root directory of benchmark!")
+    exit(1)
 
-root_csv_folder = "results-idle/rpi/fast/intsight/csv_results/"
+root_csv_folder = sys.argv[1] + "/intsight/csv_results/"
 
 measures_file = root_csv_folder + "name"
 timestamps_file = root_csv_folder + "pmccntr"
