@@ -20,9 +20,7 @@ if [ $(ls | wc -l) == "1" ]; then
 fi
 
 # Communicate the benchmark config to intsight.
-IFS="="
-while read -r file value
-do
+while IFS="=" read -r file value; do
     if [ -f "${file}" ]
     then
         echo "${value}" > "${file}"

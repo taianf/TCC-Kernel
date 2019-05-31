@@ -6,12 +6,12 @@ then
     exit 1
 fi
 
-NR_PROCS=256
-NR_THREADS_PER_PROC=1
+NR_PROCS=8
+NR_THREADS_PER_PROC=8
 
 for i in {1..${NR_PROCS}}
 do
-    cpuload ${NR_THREADS_PER_PROC} &
+    ./cpuload ${NR_THREADS_PER_PROC} &
 done
 
 ./benchmark.sh $1 $2
