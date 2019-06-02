@@ -2,7 +2,7 @@
 import csv
 import sys
 
-if len(sys.argv) != 3:
+if len(sys.argv) != 4:
     print("Especify root directory of benchmark, irq and timestamp type!")
     print("Example: results-fast softirq pmccntr")
     exit(1)

@@ -1,0 +1,6 @@
+bottom_handler=workqueue
+checkpoint_capacity=50
+delay_ms=20
+delay_type=usleep_range
+progress_interval=100
+reps=1000
