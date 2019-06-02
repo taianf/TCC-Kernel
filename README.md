@@ -1,7 +1,7 @@
 Configs:
 
 Enable HIGH_RES_TIMERS: General setup → Timers subsystem → High Resolution Timer Support
-Disable CPU Frequency scaling: CPU Power Management → CPU Frequency scaling → CPU Frequency scaling
+Set Performance CPU Frequency scaling: CPU Power Management → CPU Frequency scaling → CPU Frequency scaling
 Disable KGDB: kernel debugger: KGDB: kernel debugger → Kernel Hacking
 
 Set CONFIG_HZ to 1000Hz (read the notes!): Kernel Features → Timer frequency = 1000 Hz

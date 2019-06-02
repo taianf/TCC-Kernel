@@ -11,8 +11,8 @@ then
     exit 1
 fi
 
-results="$1"
-config="$2"
+results="$PWD/$1"
+config="$PWD/$2"
 
 cd "${INTSIGHT}"
 if [ $(ls | wc -l) == "1" ]; then
@@ -31,7 +31,6 @@ while IFS="=" read -r file value; do
     fi
 done < "${config}"
 
-mkdir -p "${results}"
 mkdir -p "${results}/proc"
 
 echo > prepare_trigger
