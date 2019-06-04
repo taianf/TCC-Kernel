@@ -1,0 +1,12 @@
+                    CPU0       CPU1       CPU2       CPU3       
+          HI:        745          0          0          2
+       TIMER:       1128        854        976       1139
+      NET_TX:         14          1          1          0
+      NET_RX:        217          0         77          5
+       BLOCK:          0          0          0          0
+    IRQ_POLL:          0          0          0          0
+     TASKLET:      12425          0         89        135
+       SCHED:       1131        847        929       1128
+     HRTIMER:          0          0          0          0
+         RCU:       1637       1352       1729       1423
+      (null):          0          0          0          0
