@@ -1,8 +1,8 @@
 #!/bin/bash
 
-tar xzf rpi-kernel.tgz
-tar xzf prt-kernel.tgz
-tar xzf xen-kernel.tgz
+#tar xzf rpi-kernel.tgz
+#tar xzf prt-kernel.tgz
+tar xzf xen-kernel-custom-100.tgz
 cd boot
 sudo cp -rd * /boot/
 cd ../lib
