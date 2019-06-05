@@ -19,7 +19,7 @@ cd ../intspect/intsight
 # build
 cd ../../rpi/linux/
 make bcm2709_defconfig
-# cp ../.config-rpi .config
+cp ../.config-rpi .config
 # make menuconfig
 make -j$(nproc) zImage modules dtbs
 make -j$(nproc) modules_install 

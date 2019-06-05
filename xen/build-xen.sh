@@ -28,7 +28,7 @@ cd ../intspect/intsight
 # build
 cd ../../xen/linux/
 make bcm2709_defconfig
-# cp ../.config-xen .config
+cp ../.config-xen .config
 # make menuconfig
 make -j$(nproc) zImage modules dtbs
 make -j$(nproc) modules_install 

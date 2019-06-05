@@ -1,6 +1,6 @@
 #!/bin/bash
 
-chmod +x $(find . -name "*.sh")
+chmod +x $(find . -name "*.sh" -o -name "*.py")
 
 # cloning repos
 git clone https://github.com/raspberrypi/tools.git
