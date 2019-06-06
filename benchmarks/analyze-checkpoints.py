@@ -26,7 +26,8 @@ with open(measures_file, 'r') as measures_csv, open(
 for result in results:
     if ("checkpoint_1" in result.keys()) & ("checkpoint_2" in result.keys()):
         if (result["checkpoint_1"] != "0") & (result["checkpoint_2"] != "0"):
-            response_times.append(int(result["checkpoint_2"]) - int(result["checkpoint_1"]))
+            response_times.append(
+                int(result["checkpoint_2"]) - int(result["checkpoint_1"]))
 
 print("lines: " + str(len(response_times)))
 if len(response_times) != 0:
