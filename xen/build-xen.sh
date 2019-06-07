@@ -24,6 +24,8 @@ xenomai-3.0.7/scripts/prepare-kernel.sh --linux=linux/ --arch=arm --ipipe=ipipe-
 # injecting intspect/intsight
 cd ../intspect/intsight
 ./inject.sh ../../xen/linux/
+sed -i -e 's/(23)/(423)/' ../../xen/linux/arch/arm/intsight/trigger.c
+sed -i -e 's/(24)/(424)/' ../../xen/linux/arch/arm/intsight/trigger.c
 
 # build
 cd ../../xen/linux/
