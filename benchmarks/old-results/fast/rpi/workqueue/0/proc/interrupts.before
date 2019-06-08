@@ -1,25 +1,25 @@
            CPU0       CPU1       CPU2       CPU3       
  16:          0          0          0          0  bcm2836-timer   0 Edge      arch_timer
- 17:       1514        843       1963       1198  bcm2836-timer   1 Edge      arch_timer
+ 17:        896        777       1526        896  bcm2836-timer   1 Edge      arch_timer
  21:          0          0          0          0  bcm2836-pmu   9 Edge      arm-pmu
- 23:         71          0          0          0  ARMCTRL-level   1 Edge      3f00b880.mailbox
+ 23:         47          0          0          0  ARMCTRL-level   1 Edge      3f00b880.mailbox
  24:          2          0          0          0  ARMCTRL-level   2 Edge      VCHIQ doorbell
  46:          0          0          0          0  ARMCTRL-level  48 Edge      bcm2708_fb dma
  48:          0          0          0          0  ARMCTRL-level  50 Edge      DMA IRQ
  50:        210          0          0          0  ARMCTRL-level  52 Edge      DMA IRQ
- 51:       1956          0          0          0  ARMCTRL-level  53 Edge      DMA IRQ
+ 51:       1769          0          0          0  ARMCTRL-level  53 Edge      DMA IRQ
  59:          0          0          0          0  ARMCTRL-level  61 Edge      bcm2835-auxirq
- 62:      23171          0          0          0  ARMCTRL-level  64 Edge      dwc_otg, dwc_otg_pcd, dwc_otg_hcd:usb1
- 86:        169          0          0          0  ARMCTRL-level  88 Edge      mmc1
- 87:       4818          0          0          0  ARMCTRL-level  89 Edge      uart-pl011
- 92:       8581          0          0          0  ARMCTRL-level  94 Edge      mmc0
+ 62:       9726          0          0          0  ARMCTRL-level  64 Edge      dwc_otg, dwc_otg_pcd, dwc_otg_hcd:usb1
+ 86:         50          0          0          0  ARMCTRL-level  88 Edge      mmc1
+ 87:       4817          0          0          0  ARMCTRL-level  89 Edge      uart-pl011
+ 92:       9529          0          0          0  ARMCTRL-level  94 Edge      mmc0
 169:          0          0          0          0  pinctrl-bcm2835  23 Edge      intsight
 FIQ:              usb_fiq
 IPI0:          0          0          0          0  CPU wakeup interrupts
 IPI1:          0          0          0          0  Timer broadcast interrupts
-IPI2:       1948       7605       3250       3240  Rescheduling interrupts
-IPI3:          7         10          9          6  Function call interrupts
+IPI2:       1700       2430       2375       3370  Rescheduling interrupts
+IPI3:          6          6          5          8  Function call interrupts
 IPI4:          0          0          0          0  CPU stop interrupts
-IPI5:          0          0          0          2  IRQ work interrupts
+IPI5:          0          1          0          2  IRQ work interrupts
 IPI6:          0          0          0          0  completion interrupts
 Err:          0
