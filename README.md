@@ -9,4 +9,4 @@ Disable Allow for memory compaction: Kernel Features → Contiguous Memory Alloc
 Disable Contiguous Memory Allocator: Kernel Features → Allow for memory compaction
 Enable CONFIG_PREEMPT_RT_FULL: Kernel Features → Preemption Model (Fully Preemptible Kernel (RT)) → Fully Preemptible Kernel (RT)
 
-date && cd TCC-Kernel/benchmarks/ && KERNEL=prt && THREADS=32 && IRQ=workqueue && sudo ./benchmarkcpu.sh results/$KERNEL/$IRQ/$THREADS $IRQ $THREADS && date && sudo reboot
+date && cd ~/TCC-Kernel/benchmarks/ && KERNEL=rpi && THREADS=0 && IRQ=softirq && sudo ./benchmarkcpu.sh results/$KERNEL/$IRQ/$THREADS $IRQ $THREADS && date && sudo reboot
