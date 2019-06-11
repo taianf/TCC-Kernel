@@ -4,7 +4,7 @@ library(readr)
 library(purrr)
 library(dplyr)
 
-NS.PER.PMCCNTR <- 1000/528
+NS.PER.PMCCNTR <- 1000/1200
 
 field.read.csv <- function(csv.results, field.name) {
 
