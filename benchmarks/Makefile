@@ -41,4 +41,4 @@ pw1:
 	Rscript tidy-chunk-result.R pw1.rds results/prt/workqueue/1/intsight/csv_results
 pwm:
 	Rscript tidy-chunk-result.R pwm.rds results/prt/workqueue/256/intsight/csv_results
-all: rs0 rs1 rsm rt0 rt1 rtm rw0 rw1 rwm ps0 ps1 psm pt0 pt1 ptm pw0 pw1 pwm
+all: rsm rt0 rt1 rtm rw0 rw1 rwm ps0 ps1 psm pt0 pt1 ptm pw0 pw1 
