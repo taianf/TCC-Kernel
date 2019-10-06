@@ -32,39 +32,38 @@ files = [
     "rwm"
 ]
 
-schema = StructType([
-    StructField("run", IntegerType(), True),
-    StructField("latency", DoubleType(), True),
+summarySchema = StructType([
+    StructField("run", IntegerType(), False),
+    StructField("latency", IntegerType(), False),
     StructField("type", StringType(), False)
 ])
 
-summary = spark.createDataFrame([], schema)
+summary = spark.createDataFrame([], summarySchema)
 
 for test in files:
-    view = spark.read \
+    csv = spark.read \
         .option("header", "true") \
-        .option("inferSchema", "true") \
+        .option("inferSchema", "true")\
         .csv("" + test + ".csv")
 
+    view = csv.filter("ktime_mono_fast != '0'")
     view.createOrReplaceTempView(test)
 
     temp = sqlCtx.sql(
-        "SELECT run, max(ktime_mono_fast) - min(ktime_mono_fast) latency, '" + test +
-        "' type FROM ps0 WHERE name in ('irq', 'softirq') AND ktime_mono_fast <> '0' GROUP BY run"
+        "SELECT run, int(max(ktime_mono_fast) - min(ktime_mono_fast)) latency, '" + test +
+        "' type FROM " + test + " WHERE name in ('irq', 'softirq','tasklet','work') GROUP BY run ORDER BY latency DESC"
     )
 
-    summary = summary.union(temp)
+    final = temp.filter("latency != 0")
 
-# summary.createOrReplaceTempView("summary")
-# summary = sqlCtx.sql(
-#         "SELECT * FROM summary ORDER BY type"
-#     )
+    final.cache()
+    final.describe().toPandas().to_csv("spark-" + test + "-describe.csv", index=False)
+    final.toPandas().sort_values("run").to_csv("spark-" + test + "-summary.csv", index=False)
+
+    summary = summary.union(final)
+
 summary.cache()
-# summary.printSchema()
-# summary.show()
-summary.describe().show()
-summary \
-    .toPandas() \
-    .sort_values(["type", "run"]) \
-    .to_csv("summary-spark.csv", index=False)
+summary.describe().toPandas().to_csv("spark-summary-describe.csv", index=False)
+summary.toPandas().sort_values(["type", "run"]).to_csv("spark-summary.csv", index=False)
+
 spark.stop()
