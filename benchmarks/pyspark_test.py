@@ -43,7 +43,7 @@ summary = spark.createDataFrame([], summarySchema)
 for test in files:
     csv = spark.read \
         .option("header", "true") \
-        .option("inferSchema", "true")\
+        .option("inferSchema", "true") \
         .csv("" + test + ".csv")
 
     view = csv.filter("ktime_mono_fast != '0'")
@@ -51,7 +51,7 @@ for test in files:
 
     temp = sqlCtx.sql(
         "SELECT run, int(max(ktime_mono_fast) - min(ktime_mono_fast)) latency, '" + test +
-        "' type FROM " + test + " WHERE name in ('irq', 'softirq','tasklet','work') GROUP BY run ORDER BY latency DESC"
+        "' type FROM " + test + " WHERE name in ('irq', 'softirq','tasklet','work') GROUP BY run"
     )
 
     final = temp.filter("latency != 0")
