@@ -32,6 +32,23 @@ files = [
     "rwm"
 ]
 
+summary_opts = [
+    # "count",
+    "mean",
+    "stddev",
+    # "min",
+    # "25%",
+    # "50%",
+    # "75%",
+    "90%",
+    "95%",
+    "96%",
+    "97%",
+    "98%",
+    "99%",
+    "max"
+]
+
 summarySchema = StructType([
     StructField("run", IntegerType(), False)
 ])
@@ -53,14 +70,14 @@ for test in files:
     )
 
     final = temp.filter(test + " != 0")
-    final.cache()
-    final.describe().toPandas().to_csv("spark-results/" + test + "-describe.csv", index=False)
-    final.toPandas().sort_values("run").to_csv("spark-results/" + test + "-summary.csv", index=False)
 
     summary = summary.join(final, on=['run'], how='full')
 
 summary.cache()
-summary.describe().toPandas().to_csv("spark-results/summary-describe.csv", index=False)
-summary.toPandas().sort_values("run").to_csv("spark-results/summary.csv", index=False)
+summary.toPandas().sort_values("run").to_csv("spark-results/merged.csv", index=False, float_format='%.0f')
+summary2 = summary.drop("run").summary(summary_opts).toPandas().round(2).T.reset_index()
+summary2.cache()
+summary2.to_csv("spark-results/summary.csv", header=False, index=False, float_format='%.2f')
+summary2.to_latex("spark-results/summary.tex", header=False, index=False, float_format='%.2f')
 
 spark.stop()
