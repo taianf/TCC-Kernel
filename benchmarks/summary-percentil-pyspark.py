@@ -37,25 +37,13 @@ files = [
 ]
 
 summary_opts = [
-    # "count",
-    # "mean",
-    # "stddev",
     "min",
-    "25%",
-    "50%",
-    "75%",
-    "90%",
-    "91%",
-    "92%",
-    "93%",
-    "94%",
-    "95%",
-    "96%",
-    "97%",
-    "98%",
-    "99%",
     "max"
 ]
+
+percentils_string = list(map(lambda x: str(x/10) + "%", range(1001)))
+
+summary_opts += percentils_string
 
 summarySchema = StructType([
     StructField("run", IntegerType(), False)
@@ -83,9 +71,9 @@ for test in files:
 
 # summary.cache()
 # summary.toPandas().sort_values("run").to_csv("spark-results/merged.csv", index=False, float_format='%.0f')
-summary2 = summary.drop("run").summary(summary_opts).toPandas()
-summary2.to_csv("spark-results/summary-rpi.csv", index=False)
-summary2.to_latex("spark-results/summary-rpi.tex", index=False)
+summary2 = summary.drop("run").summary(percentils_string).toPandas()
+summary2.to_csv("spark-results/summary-percentil.csv", index=False, sep=";")
+# summary2.to_latex("spark-results/summary-rpi.tex", index=False)
 
 spark.stop()
 
