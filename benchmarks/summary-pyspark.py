@@ -54,6 +54,7 @@ summary_opts = [
     "97%",
     "98%",
     "99%",
+    "99.9%",
     "max"
 ]
 
@@ -81,11 +82,11 @@ for test in files:
 
     summary = summary.join(final, on=['run'], how='full')
 
-# summary.cache()
-# summary.toPandas().sort_values("run").to_csv("spark-results/merged.csv", index=False, float_format='%.0f')
+summary.cache()
+summary.toPandas().sort_values("run").to_csv("spark-results/merged.csv", index=False, float_format='%.0f')
 summary2 = summary.drop("run").summary(summary_opts).toPandas()
-summary2.to_csv("spark-results/summary-rpi.csv", index=False)
-summary2.to_latex("spark-results/summary-rpi.tex", index=False)
+summary2.to_csv("spark-results/summary.csv", index=False)
+summary2.to_latex("spark-results/summary.tex", index=False)
 
 spark.stop()
 
