@@ -15,8 +15,8 @@ time_df = pd.read_csv(sys.argv[2] + "/ktime_mono_fast")
 
 with open(sys.argv[1] + ".csv", mode="w") as final:
     final.write("position,run,name,ktime_mono_fast\n")
-    for x in range(name_df.size - 1):
-        for y in range(50):
+    for x in range(name_df.size):
+        for y in range(name_df.iloc[x].size):
             if str(name_df.iloc[x][y]) != "nan" and str(time_df.iloc[x][y]) != "nan":
                 final.write(
                     str(y + 1) + "," + str(x + 1) + "," + str(name_df.iloc[x][y]) + "," + str(
