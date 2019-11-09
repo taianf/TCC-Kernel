@@ -41,4 +41,9 @@ pw1:
 	python tidy-chunk-result.py pw1 results/prt/workqueue/1/intsight/csv_results
 pwm:
 	python tidy-chunk-result.py pwm results/prt/workqueue/256/intsight/csv_results
-all: rs0 rs1 rsm rt0 rt1 rtm rw0 rw1 rwm ps0 ps1 psm pt0 pt1 ptm pw0 pw1
+
+consolidate: rs0 rs1 rsm rt0 rt1 rtm rw0 rw1 rwm ps0 ps1 psm pt0 pt1 ptm pw0 pw1
+
+all: consolidate
+	python summary-percentil-pyspark.py
+	python summary-pyspark.py
