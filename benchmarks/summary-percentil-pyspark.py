@@ -36,10 +36,7 @@ files = [
     "rwm"
 ]
 
-summary_opts = [
-    "min",
-    "max"
-]
+summary_opts = []
 
 percentils_string = list(map(lambda x: str(x / 10) + "%", range(1001)))
 
@@ -69,7 +66,7 @@ for test in files:
 
     summary = summary.join(final, on=['run'], how='full')
 
-summary2 = summary.drop("run").summary(percentils_string).toPandas()
+summary2 = summary.drop("run").summary(summary_opts).toPandas()
 summary2.to_csv("spark-results/summary-percentil.csv", index=False, sep=";")
 # summary2.to_latex("spark-results/summary-rpi.tex", index=False)
 
