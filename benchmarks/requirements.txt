@@ -1,5 +1,5 @@
 numpy
 pandas
-py4j
+py4j==0.10.7
 pyarrow
 pyspark
