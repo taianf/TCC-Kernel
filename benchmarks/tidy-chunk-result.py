@@ -10,12 +10,12 @@ if (len(sys.argv) != 3):
 
 start = datetime.now()
 
-name_df = pd.read_csv(sys.argv[2] + "/name")
-time_df = pd.read_csv(sys.argv[2] + "/ktime_mono_fast")
+name_df = pd.read_csv(sys.argv[2] + "/name", dtype=str)
+time_df = pd.read_csv(sys.argv[2] + "/ktime_mono_fast", dtype=str)
 
 with open(sys.argv[1] + ".csv", mode="w") as final:
     final.write("position,run,name,ktime_mono_fast\n")
-    for x in range(name_df.size):
+    for x in range(len(name_df.index)):
         for y in range(name_df.iloc[x].size):
             if str(name_df.iloc[x][y]) != "nan" and str(time_df.iloc[x][y]) != "nan":
                 final.write(

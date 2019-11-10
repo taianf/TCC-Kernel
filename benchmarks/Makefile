@@ -44,6 +44,10 @@ pwm:
 
 consolidate: rs0 rs1 rsm rt0 rt1 rtm rw0 rw1 rwm ps0 ps1 psm pt0 pt1 ptm pw0 pw1
 
-all: consolidate
+analize:
+	mv *.csv consolidated-results
 	python summary-percentil-pyspark.py
 	python summary-pyspark.py
+
+all: consolidate
+	make analize
