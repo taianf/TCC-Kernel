@@ -67,7 +67,7 @@ for test in files:
     summary = summary.join(final, on=['run'], how='full')
 
 summary2 = summary.drop("run").summary(summary_opts).toPandas()
-summary2.to_csv("spark-results/summary-percentil.csv", index=False, sep=";")
+summary2.to_csv("spark-results/summary-percentil.csv", index=False, sep=",")
 # summary2.to_latex("spark-results/summary-rpi.tex", index=False)
 
 spark.stop()
